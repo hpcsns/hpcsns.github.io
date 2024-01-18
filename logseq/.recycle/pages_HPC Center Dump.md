@@ -1,0 +1,372 @@
+- https://hpccenter.sns.it/page/wiki/pages/Group_owned_resources_on_Trantor.html
+	- [](https://www.sns.it/it/centro-high-performance-computing)
+		- Trantor acts as front end node for group owned resources open to computation only to specific groups via dedicated queues and permissions. Unless otherwise noted these clusters use the same policies applied to institutional resources.
+	- * Diamond: 40 nodes, each equipped with 2 Intel Xeon CPUs, 28 cores (14 cores per socket), 128 GB of RAM (4.5 GB/core) and 3TB scratch space. Owned by [EMBEDLAB](http://embedlab.sns.it/).
+	- * Aurora: 11 nodes, each equipped with 4 Intel Xeon 6252N @2.3 GHz, 96 cores (24 physical cores per socket), 512 GB of RAM (5.3 GB/core) and a scratch area of 4.9 TB (with 750 GB of SSD cache). Owned by [EMBEDLAB](http://embedlab.sns.it/).
+	- * Kalgan: 1 node equipped with 2 Intel Xeon Platinum 8380 @ 2.30GHz, 80 cores (40 physical cores per socket), 2 TB of RAM (25.6 GB/core) and a scratch area of 8.7 TB. Owned by Professor Chiara Cappelli and Professor Henrik Koch.
+	- * Hypnos:
+		- * 1 head-node equipped with 2 Intel Xeon Gold 6140 @ 2.30GHz, 32 cores (18 physical cores per socket), 128 GB of RAM (4 GB/core). Exports a 9.8TB scratch area with SSD cache, shared across the Hypnos compute nodes.
+		- * 10 compute nodes equipped with 4 Intel Xeon Gold 6140 @ 2.30GHz, 72 cores (18 physical cores per socket), 384 GB of RAM (5.3 GB/core) and a local scratch area of 1.7 TB. An additional scratch area exported by the Hypnos head-node (9.8TB with SSD cache) is shared across the nodes.
+		- Owned by Professor Andrea Ferrara.
+	- * Oromasdes03 (previously called Ananke): 1 node equipped with 2 Intel Xeon E7-8890 v4 @ 2.20GHz, 48 cores (24 physical cores per socket), 1.5 TB of RAM (32 GB/core) and a local scratch area of 1.1 TB. Owned by the [Cosmology group](http://cosmology.sns.it).
+	- * Anacreon: 4 nodes, each equipped with 2 Intel Xeon Gold 6230R @ 2.10GHz, 52 cores (26 physical cores per socket), 192 GB of RAM (3.6 GB/core) and a small local scratch area. Owned by the Bioinformatics group.
+	- * Gaia: 1 node, equipped with 2 AMD EPYC 7352, 48 cores (24 physical cores per socket), 512 GB of RAM (10.6 GB/core), 4 NVIDIA A100 and a local scratch area of \~890 GB. Owned by the Bioinformatics group.
+	- * Cinna01 and Cinna02: 2 nodes, each equipped with 2 Intel Xeon E5-2695 v2 @ 2.40GHz, 24 cores (12 physical cores per socket), 64 GB of RAM (2.6 GB/core), 4 NVIDIA Tesla K20Xm GPUs and a local scratch area. Owned by the Compnanobio group.
+- https://hpccenter.sns.it/page/wiki/pages/Acknowledgments_Policy.html
+  collapsed:: true
+	- [](https://www.sns.it/it/centro-high-performance-computing)
+		- In order to highlight the relevance of HPC and simulation in SNS research, we kindly ask you to add an acknowledgment to your publications whose results was obtained by making use of the computational resources managed by the HPC Center. A sentence like the following one should suffice:
+	- > "We gratefully acknowledge computational resources of the Center for High Performance Computing (CHPC) at SNS"
+		- Finally, once published, please send us the details of these publications in **bibtext** format, so that we can [ list them in our website ](../../research-support/index.html).
+- https://hpccenter.sns.it/page/wiki/pages/Connecting_to_the_head_node.html
+	- To get access to (most) of the cluster resources, you must first login into one of the available "_head nodes_":
+	- trantor02.sns.it
+	- trantor03.sns.it
+	- * Open access
+	- * Equipped with a desktop environment
+	- hypnos.sns.it
+	- * Access restricted to the '_interstellar_' group
+	- * Equipped with a desktop environment
+	- cinna.sns.it
+	- * Access restricted to the '_compnanobio_' group
+	- * Equipped with a desktop environment
+	- gaia01.sns.it
+	- * Access restricted to the '_bioinfo_' group
+	- * Acts both as head-node and compute node
+		- Login and commands execution on the head-nodes are usually managed by the **SSH** protocol. However, some of the head-nodes (such as _trantor03.sns.it_) are also equipped with a desktop environment (Xfce) and the **X2Go** remote desktop solution.
+		- Instructions on how to access the cluster using SSH and X2Go are discussed in the following.
+		- At your first login, you will be prompted to change the password:
+	- * `ssh _username_@trantor01.sns.it`
+	- * `Password:`
+	- * `Password expired. Change your password now.`
+	- * `Current Password:`
+	- * `New password:`
+	- * `Retype new password:`
+		- The password must be at least 12 characters long and must contain an uppercase letter, a lowercase letter, a digit and a special character. Furthermore, it is not allowed to use the same character three or more times in a row. Finally, when the password expires, old passwords can not be reused.
+	- **Secure Shell**, or **SSH**, is a cryptographic (encrypted) network protocol to allow remote login and other network services to operate securely over an unsecured network. The most visible application of the protocol is for access to shell accounts on Unix-like operating systems. SSH can be used for both command line and GUI applications.
+	- ### Using Windows
+	- **Windows 10** has an official SSH client now. It can be enabled in the Settings panel clicking on Settings -> Optional features -> Add a feature -> OpenSSH Client (if already enabled it will appear in the "Optional features" list). It can be used on any terminal application like the standard `cmd` console prompt or Windows PowerShell. You can also try **Windows Terminal** from Microsoft App store.
+		- On older versions of Windows, things are a little more involved. Older Windows does not come with a built-in SSH client, so you have to install one first. We recommend the popular software _Putty_, which is free and well made.
+	- * Download putty [here](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html);
+	- * Run `putty.exe;`
+	- * Login to server trantor01.sns.it as shown below:
+	- [![caption](img/Putty1.jpg)](img/Putty1.jpg) Type in user-name and password:
+	- [![caption](img/Putty2.jpg)](img/Putty2.jpg)
+		- You now have your Unix/Linux prompt. On our cluster, the command `qstat -Q` will show you a quick summary of the queues status, as you can see below.
+	- [![caption](img/Putty3.jpg)](img/Putty3.jpg)
+		- Also, if you need to securely transfer a file between a local and a remote computer, _WinSCP_ offers basic file manager and file synchronization functionality.
+	- * Download WinSCP [here](http://winscp.net/eng/download.php);
+	- * Execute `WinSCP.exe`;
+	- * Login to trantor01.sns.it with username and password:
+	- [![caption](img/Winscp1.jpg)](img/Winscp1.jpg)
+	- [![caption](img/Winscp2.jpg)](img/Winscp2.jpg)
+	- ### Using Linux
+	- To access the cluster from Linux:
+	- * Open Gnome Terminal or any other terminal emulator;
+	- * Install SSH if you don't have it already; refer to the documentation of you Linux distro to know how to do it;
+	- * Type ssh _yourusername_@trantor01.sns.it;
+	- * Type your password;
+	- * Do your stuff.
+	- To close the session, type `exit` or press CTRL + D. For secure file transfer, you can use the command line utilities _scp_ or _sftp_, for example:
+	- $ scp -r yourusername@trantor01.sns.it:mydata/myresults ./localdir/
+	- _scp_ starts the relative path from the user home directory; the `-r` switch is used to recursively copy the directory and its content.
+	- As an alternative, you can also use built in remote capabilities in a file-browser such as Nautilus in Gnome:
+	- * Open file browser (Nautilus);
+	- * Switch to “Go To” view: use key combination CTRL + L;
+	- * In “Go-to” input box type <sftp://trantor01.sns.it>;
+	- * Type your username and password, then select “connect”.
+	- ### Using MacOS X
+	- This is how to login the cluster from a Mac, it works more or less like in Linux (see above):
+	- * Open Terminal;
+	- * Type ssh _yourusername_@trantor01.sns.it;
+	- * Type your password;
+	- * Do your stuff.
+	- To close the session, type `exit` or press CTRL + D. Refer to the Linux paragraph for instructions on how to use SCP.
+		- In addition to ssh access, some of the head-nodes (such as _trantor03.sns.it_) also provides a **remote desktop environment**. In particular, they are equipped with the [**Xfce**](https://www.xfce.org) desktop environment and a [**X2Go**](https://wiki.x2go.org) server.
+		- To use remote desktop, you first need to install the **X2Go** client. You can refer to the [ official documentation ](https://wiki.x2go.org/doku.php/doc:installation:x2goclient) for instructions on how to install the client on various platforms.
+		- Once the client is up and running, create a new session by selecting the menu item "_Session --> New session.._.". A new dialog will appear, asking for connection details. Fill the form as follows:
+	- * **Session name**: whatever you like (eg. 'Trantor03')
+	- * **Host**: the fully-qualified domain name of the head-node (eg. trantor03.sns.it)
+	- * **Login**: your username
+	- * **Session type**: XFCE
+	- ![](img/Trantor03SessionPreferences.jpg)
+		- Then press "OK" to save the session preferences. A small gray box representing the session will appear at the right side of the window:
+	- ![](img/X2GoMainWin.jpg)
+		- Click on it. A login dialog will appear. Inserts your credentials and press "Ok":
+	- ![](img/X2GoLoginDialog.jpg)
+		- The remote desktop window should start in a few seconds.
+	- **Hint**
+		- Test if the keyboard numpad is working correctly within the remote desktop. If not, open the Xfce's keyboard settings and disable the "Restore num lock state on startup" checkbox. Finally, close and re-open the X2Go session.
+	- ![](img/XfceKeySettings.jpg)
+-
+- https://hpccenter.sns.it/page/wiki/pages/Basic_Linux_Commands.html
+	- [ ](https://www.sns.it/it/centro-high-performance-computing)
+	- This is just a super quick list. You need a minimum of proficiency with **Unix** shells (_bash_ and _tcsh_ are the ones mostly used on the cluster) and Linux systems.
+	- | passwd          | Changes your user password. Type your old password Insert new password Confirm new password                                                                                                                                                                  |                  |
+	- | --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------- |
+	- | ls              | Lists folders and files in current directory                                                                                                                                                                                                                 |                  |
+	- | mkdir           | Create new directory into the current one mkdir _newdir_                                                                                                                                                                                                     |                  |
+	- | cd              | Changes directory. Examples: cd test (go to a directory named 'test') cd .. (go to parent directory) cd \~ (go to home directory; \~ is a short-cut for /home/_username_)                                                                                    |                  |
+	- | rm              | Removes specified file or directory rm _filename_ (remove single _filename_) rm \*.txt (remove ALL .txt files into current directory) rm -r _dirname_ (remove directory and all the files it contains) **Please be careful when you use the -f option!** :-) |                  |
+	- | rmdir           | Removes specified EMPTY directory rmdir _dirname_                                                                                                                                                                                                            |                  |
+	- | pwd             | Prints current absolute path                                                                                                                                                                                                                                 |                  |
+	- | man             | Shows specified command's manual page man ls (shows ls help)                                                                                                                                                                                                 |                  |
+	- | vi _x.sh_       | VI is a _text editor_. If _x.sh_ does not exists, vi creates a new file called _x.sh_ and opens it; otherwise, it just opens the existing file.                                                                                                              |                  |
+	- | less _textfile_ | less is a _text pager_. Opens _textfile_ in read-only mode. You can use up and down arrows to move across the text. It shares many commands with VI.                                                                                                         |                  |
+	- | chmod           | Changes POSIX permissions of a file or directory. Allows to protect files from unwanted access. r :read permission w :write permission x :exec permission chmod +x file.sh (allows execution) chmod -w file.sh (denies write)                                |                  |
+	- | chown           | Changes owner of a file or directory chown _username_ file.sh                                                                                                                                                                                                |                  |
+	- | top             | Shows current executing processes                                                                                                                                                                                                                            |                  |
+	- | cat             | Prints the content of a file on screen                                                                                                                                                                                                                       |                  |
+	- | grep            | Filters the content of a file by outputting those lines which contain the specified pattern. grep pattern file.sh You can exploit piping to filter the output of another command with grep: cat file.sh \|grep home cat file.sh                              | grep "home page" |
+		- Further information on _Linux shell_ can be found here:
+	- [Useful Linux Commands for Newbies - www.tecmint.com](http://www.tecmint.com/useful-linux-commands-for-newbies/)
+	- [Shell Redirection - Wikipedia](https://en.wikipedia.org/wiki/Redirection%5F%28computing%29)
+	- [20 Advanced Commands for Middle Level Linux Users - www.tecmint.com](http://www.tecmint.com/20-advanced-commands-for-middle-level-linux-users/)
+- https://hpccenter.sns.it/page/wiki/pages/Submitting_Inspecting_and_Cancelling_PBS_Jobs.html
+	- A "job" is essentially a set of commands to be executed on the compute nodes, together with a specification of the computational resources (number of nodes, number of processors per node, amount of RAM memory per node, execution time ecc.) to be reserved for their execution.
+	- Job requests are submitted to a job scheduling system (e.g. PBS). The main purpose of the job scheduler is to dispatch jobs to compute nodes for execution, trying both to maximize and balance the utilization of the computational resources.
+	- Once submitted, the job is appended to a "queue" in which it will be pending until there will be enough free resources to allow its execution. It is common for a cluster to provide different queues, each associated to a different subset of compute nodes, a different maximum execution time etc.
+	- All calculations **MUST** be submitted as Jobs to the **Portable Batch System (PBS) scheduling system**, for their execution on the compute nodes.
+	- **Running interactively on the "head-nodes" is FORBIDDEN. It is also STRICTLY FORBIDDEN to run your computations on the compute nodes bypassing the job submission mechanism.**
+	- Foreword: the following instructions have been written for BASH; however adapting them to CSH or TCSH is straightforward.
+	- Remember that you can always access the online manuals using the command `man`. Also, we strongly suggest to read the PBS user manual, you can download it from the [ Altair website ](https://www.altair.com/pdfs/pbsworks/PBSUserGuide19.2.3.pdf).
+	- In this section we are going to submit our first **PBS job**. A PBS job is simply a shell script, possibly with some PBS directives. PBS directives look like shell comments, so the shell itself ignores them, but PBS picks them up and processes the job accordingly. A BASH scripts usually begins with `#!/bin/bash`, or if you prefer TCSH `#!/bin/tcsh`.
+	- We are going to start by submitting a very simple shell script, that executes two Unix commands and then exits; it doesn't have any PBS directives. The script must be executable:
+	- #### qsub
+		- The job is submitted with the command `qsub`:
+	- $ qsub -q q07daneel job.sh 12248.pbs01
+		- The command output is its job ID. It's the same ID that appears in the first column of `qstat` listing (the qstat command is discussed in the next section). The standard output (STDOUT) of a job is written on a file that, at the end of the job's execution, is copied in the same directory from which the job was submitted. Standard error (STDERR) is also returned on another file in the same directory:
+	- $ ls job.sh job.sh.e12248 job.sh.o12248
+		- The output file name has this format:
+	- job name + .o + job ID number
+		- The same goes for the errors file name, with _.e_ instead of _.o_. In our example the error file is empty and the standard output file contains:
+	- $ cat job.sh.o12248 daneel03 Sun Sep 7 16:27:25 CEST 2015
+		- and this tells us that the job was run on `daneel03`.
+		- Our job executes so fast that we can hardly catch it in action. We are going to slow it down by letting it sleep for a hundred seconds before exiting. Here is our modified version.
+	- $ cat job.sh #!/bin/bash hostname date sleep 100 date exit 0
+		- And just to make sure that it's not going to hang forever, we are going to execute it interactively and check that it sleeps for 100 seconds only:
+	- $ time ./job.sh trantor01 Sun Sep 7 16:53:41 CEST 2015 Sun Sep 7 16:55:21 CEST 2015 real 1m40.029s user 0m0.000s sys 0m0.010s
+		- This worked just fine: the job took 1 minute and 40 seconds, which is 100 seconds, to execute. Now we are going to submit it with `qsub`:
+	- $ qsub -q q07daneel job.sh 12259.pbs01
+		- Now, how can you check its state?
+	- #### qstat
+		- The `qstat` command is used to get information about jobs and queues. To inspect the state of a specific job, run `qstat` with the job ID as argument:
+	- $ qstat 12259.pbs01
+	- Job id            Name             User              Time Use S Queue
+	- ----------------  ---------------- ----------------  -------- - -----
+	- 12259.pbs01       job.sh           hpcstaff          00:00:29 R daneel03
+		- Pay attention to the 5th column, which reports the status of the job. "R" means that the job is running. Others common status values are the following:
+	- the job is exiting after having run
+	- the job is held - this means that it is not going to run until it is released
+	- the job is queued and will run when the requested resources will become available
+	- the job is running
+	- the job is being transferred to a new location - this may happen, e.g., if the node the job had been running on crashed
+	- the job is waiting to be executed at a later time - you you can specify a time after which the job is eligible to run (see section "6.8 Deferring Execution" of the [PBS User's Guide](https://www.altair.com/pdfs/pbsworks/PBSUserGuide19.2.3.pdf) for details).
+	- Other commonly used arguments for the `qstat` command are the following:
+	- `qstat -n1`
+	- lists all jobs on system, together with their execution host and running time (walltime).
+	- `qstat -n1 jobid`
+	- displays the state of the specified job, it's running time (walltime) and the execution host.
+	- `qstat -s jobid`
+	- displays the state of the specified job, followed by any comment added by the administrator or scheduler
+	- `qstat -f jobid`
+	- displays full information about the status of a job
+	- `qstat -fx jobid`
+	- displays full information about a finished job
+	- `qstat -u username`
+	- lists all jobs owned by the specified user
+	- `qstat -q`
+	- lists the available queues, with details about the maximum resources that can be requested by jobs submitted in each queue
+	- `qstat -Q`
+	- lists the available queues, with details about their status (whether the queue is enabled, number of running jobs, number of queued jobs etc.).
+	- `qstat -Qf queuename `
+	- displays full information about the status of a queue
+	- `qstat -B `
+	- lists summary information about the PBS server
+	- #### qdel
+		- To delete a job use `qdel`. If the job is running, the command sends `SIGKILL` to it. If the job is merely queued, the command removes it from the queue. Here's an example:
+	- $ qsub -q q07daneel job.sh 12390.pbs01 $ qdel 12390.pbs01 $ ls job.sh job.sh.e12390 job.sh.o12390 $ cat job.sh.o12390 daneel02 Sun Sep 7 17:26:01 CEST 2015
+	- #### pbsnodes
+		- To check the availability of a node that you want to request for your submission, you can use:
+	- `pbsnodes -a`
+	- lists all nodes with their features and current state (free, job-busy, stale, etc.). It's quite verbose.
+	- `pbsnodes <nodeid>`
+	- displays features and state of the specified node.
+	- `pbsnodes -l`
+	- lists all DOWN and OFFLINE nodes (which you can't request immediately)
+	- ##  Resources and queues
+		- When you submit a job, you ask for a certain amount of resources to be reserved for that job's execution. There are two types of resources that can be requested: "chunk" resources and "job-wide" resources.
+		- A "chunk" is a collection of host-level resources (such as a given number of CPUs, a given amount of memory etc.) that are reserved as a unit. The "chunk" is used by the portion of the job which runs on the host on which the resources have been allocated. These resources are requested inside the `select` statement.
+		- "Job-wide" are resources that apply to the entire job, such as the cpu-time or the walltime. These resources are requested outside the `select` statement. You can request for resources by means of dedicated directives within the job script, or by exploiting the `-l` option of the qsub command.
+		- As an example, consider the following job script:
+	- #!/bin/bash #PBS -l select=1:ncpus=2:ngpus=1:mem=8096mb #PBS -l walltime=03:00:00 #PBS -q q07daneel #PBS -N sleep sleep 3h
+		- In this case, the job needs 1 "vnode" (i.e. compute node), 2 CPUs, 1 GPU and 8GB of RAM to run. Also, the user is requesting that the job is queued to a specific queue (q07daneel in the example) with the `-q` option. Please note that on our cluster the queue name **must** be selected since there is no default queue. `-N` gives a name to the job.
+		- Of course, you can request resources directly within the qsub command:
+	- $ qsub -l select=1:ncpus=2:ngpus=1:mem=8gb -q q07daneel \[...\] job.sh
+		- The following list describes the resources that can be requested for a job and their default values:
+	- * **_ncpus_** \["chunk" resource\] - The number of logical CPU cores to be reserved. Default value: "1".
+	- * **_mem_** \["chunk" resource\] - The amount of RAM memory to be reserved. Default value: "2048mb".
+	- * **_ngpus_** \["chunk" resource\] - The number of GPUs to be reserved. Default value: "0".
+		- _Note: this resource is available only on q07daneel and q14daneel queues (see below)._
+	- * **_mpiprocs_** \["chunk" resource\] - Number of MPI processes for the chunk.
+	- * **_host_** \["chunk" resource\] - The compute node on which the job must be executed.
+		- _Note: please avoid forcing the execution of your job on a specific host unless you have very good reasons for doing so!_
+	- * **_walltime_** \["job-wide" resource\] - The maximum execution time for the Job. It's default value depends on the selected queue. If the Job is still executing when the requested walltime expires, it will be killed.
+		- _Note: Usually there is no need to explicitly request this resource. Just rely on the queue's limit._
+		- The resources that have been requested for a job are reserved at the Linux Kernel level when the Job starts its execution, and are not available to other users. Likewise, your job can only use the resources you requested for it. In particular:
+	- * Even if your Job spawns more processes / threads than the number of CPU cores that have been assigned to it, all these processes / threads will be executed only by the assigned CPU cores.
+		- _Note: from your code/script you can retrieve the number of cores assigned to the job by reading the "**NCPUS**" environment variable._
+	- * On Daneel nodes, you'll be able to use only the GPUs you requested for the job. Note that while your program may see all the installed GPUs, the ones you don't reserved will be detected as "incompatible" (or something similar). When possible, avoid passing to your program/library the IDs of the GPUs to be used. Instead, let the program/library detect the available GPUs by itself.
+	- * As regards to RAM memory, a "soft" limit is enforced: as long as there is enough free memory on the system, the job is allowed to allocate more memory than the reserved amount. However, in the case of shortage of memory, the memory pages of the processes that violate the limit will be swapped out to disk. This usually leads to a sensible slowdown of your computation and, if also the swap area on disk gets filled, to the kill of your job.
+		- It is also important to note that, on each node, \~4GB of RAM are reserved for the Operating System. As a consequence, **the maximum amount of memory you can request for a job is about 4.5 GB less than the total amount of RAM installed on the node**. As an example, you should not request more than 15.5 GB of memory for a job intended to be run on an Helicon node, since these nodes are equipped with 20GB of RAM.
+		- The available queues are listed below. Queues are characterized by the hosts the jobs will be scheduled to and by the maximum execution time ("walltime"). Finally, note that some queues do not allow to start [interactive job sessions](#faq%5Finteractive%5Fsession).
+	- * **_q02daneel_** Execution hosts: "Daneel" nodes Max walltime: 2 days Max 6 running jobs per user. No limits on queued jobs
+		- Interactive sessions: _allowed_
+	- * **_q07daneel_** Execution hosts: "Daneel" nodes Max walltime: 7 days Max 2 running jobs and 10 queued jobs per user
+		- Interactive sessions: _denied_
+	- * **_q14daneel_** Execution hosts: "Daneel" nodes Max walltime: 14 days Max 2 running jobs and 10 queued jobs per user
+		- Interactive sessions: _denied_
+	- * **_q02hal_** Execution hosts: "Hal" nodes Max walltime: 2 days Max 6 running jobs per user. No limits on queued jobs
+		- Interactive sessions: _allowed_
+	- * **_q07hal_** Execution hosts: "Hal" nodes Max walltime: 7 days Max 1 running jobs and 5 queued jobs per user
+		- Interactive sessions: _denied_
+	- * **_q14hal_** Execution hosts: "Hal" nodes Max walltime: 14 days Max 1 running jobs and 5 queued jobs per user
+		- Interactive sessions: _denied_
+	- * **_q02helicon_** Execution hosts: "Helicon" nodes Max walltime: 2 days Max 6 running jobs per user. No limits on queued jobs
+		- Interactive sessions: _allowed_
+	- * **_q07helicon_** Execution hosts: "Helicon" nodes Max walltime: 7 days Max 4 running jobs per user. No limits on queued jobs
+		- Interactive sessions: _denied_
+	- * **_q14helicon_** Execution hosts: "Helicon" nodes Max walltime: 14 days Max 4 running jobs per user. No limits on queued jobs
+		- Interactive sessions: _denied_
+	- * **_q07artes_**
+	- _\[Restricted to the members of the "artes" group\]_ Execution hosts: "Artes" nodes Max walltime: 7 days Max 3 running jobs per user. No limits on queued jobs
+		- Interactive sessions: _allowed_
+	- * **_q14artes_**
+	- _\[Restricted to the members of the "artes" group\]_ Execution hosts: "Artes" nodes Max walltime: 14 days Max 3 running jobs per user. No limits on queued jobs
+		- Interactive sessions: _allowed_
+	- * **_q07diamond_**
+	- _\[Restricted to the members of the "diamond" group\]_ Execution hosts: "Diamond" nodes Max walltime: 7 days Max 10 running jobs per user. No limits on queued jobs
+		- Interactive sessions: _allowed_
+	- * **_q14diamond_**
+	- _\[Restricted to the members of the "diamond" group\]_ Execution hosts: "Diamond" nodes Max walltime: 14 days Max 7 running jobs per user. No limits on queued jobs
+		- Interactive sessions: _allowed_
+	- * **_q07aurora_**
+	- _\[Restricted to the members of the "diamond" group\]_ Execution hosts: "Aurora" nodes Max walltime: 7 days Max 3 running jobs per user. No limits on queued jobs
+		- Interactive sessions: _allowed_
+	- * **_q14aurora_**
+	- _\[Restricted to the members of the "diamond" group\]_ Execution hosts: "Aurora" nodes Max walltime: 14 days Max 3 running jobs per user. No limits on queued jobs
+		- Interactive sessions: _allowed_
+	- * **_q07kalgan_**
+	- _\[Restricted to the members of the "kalgan" group\]_ Execution hosts: "Kalgan" nodes Max walltime: 7 days Max 3 running jobs per user. No limits on queued jobs
+		- Interactive sessions: _allowed_
+	- * **_q14kalgan_**
+	- _\[Restricted to the members of the "kalgan" group\]_ Execution hosts: "Kalgan" nodes Max walltime: 14 days Max 3 running jobs per user. No limits on queued jobs
+		- Interactive sessions: _allowed_
+	- * **_q05hypnos_**
+	- _\[Restricted to the members of the "interstellar" group\]_ Execution hosts: "Hypnos" nodes Max walltime: 5 days Max 3 running jobs per user and 6 queued jobs
+		- Interactive sessions: _allowed_
+	- * **_q05oromasdes_**
+	- _\[Restricted to the members of the "astro" group\]_ Execution hosts: oromasdes03 (previously called Ananke) Max walltime: 5 days Max 3 running jobs per user. No limits on queued jobs
+		- Interactive sessions: _allowed_
+	- * **_q07cinna_**
+	- _\[Restricted to the members of the "compnanobio" group\]_ Execution hosts: "Cinna" nodes Max walltime: 7 days Max 3 running jobs per user. No limits on queued jobs
+		- Interactive sessions: _allowed_
+	- * **_q14cinna_**
+	- _\[Restricted to the members of the "compnanobio" group\]_ Execution hosts: "Cinna" nodes Max walltime: 14 days Max 3 running jobs per user. No limits on queued jobs
+		- Interactive sessions: _allowed_
+	- * **_q02anacreon_**
+	- _\[Restricted to the members of the "bioinfo" group\]_ Execution hosts: "Anacreon" nodes Max walltime: 2 days No limits on per-user running and queued jobs
+		- Interactive sessions: _allowed_
+	- * **_q07anacreon_**
+	- _\[Restricted to the members of the "bioinfo" group\]_ Execution hosts: "Anacreon" nodes Max walltime: 7 days Max 2 running jobs per user. No limits on queued jobs
+		- Interactive sessions: _denied_
+	- * **_q14anacreon_**
+	- _\[Restricted to the members of the "bioinfo" group\]_ Execution hosts: "Anacreon" nodes Max walltime: 14 days Max 2 running jobs per user. No limits on queued jobs
+		- Interactive sessions: _denied_
+	- * **_q02gaia_**
+	- _\[Restricted to the members of the "bioinfo" group\]_ Execution hosts: "Gaia" nodes Max walltime: 2 days No limits on per-user running and queued jobs
+		- Interactive sessions: _allowed_
+	- * **_q07gaia_**
+	- _\[Restricted to the members of the "bioinfo" group\]_ Execution hosts: "Gaia" nodes Max walltime: 7 days Max 2 running jobs per user. No limits on queued jobs
+		- Interactive sessions: _denied_
+	- * **_q14gaia_**
+	- _\[Restricted to the members of the "bioinfo" group\]_ Execution hosts: "Gaia" nodes Max walltime: 14 days Max 2 running jobs per user. No limits on queued jobs
+		- Interactive sessions: _denied_
+		- _Please try to select nodes and queues according to the real necessities of your calculation, and avoid crowding on the newest nodes only._
+		- _Also, remember to specify a queue, since there is no default queue on our cluster._
+		- For further information, please consult the official [ PBS Pro user guide ](https://www.altair.com/pdfs/pbsworks/PBSUserGuide19.2.3.pdf).
+	- ##  Scratch Areas
+		- Every user has a scratch space on every computing node, under `/scratch/$USER`. This area is a temporary storage designed for Jobs' I/O operations.
+		- When possible, this storage area is allocated on the _local hard drives_ of the compute nodes, thus providing a _higher bandwidth and a lower latency_ than NFS mount points. This is the case, for example, of Daneel and Hal nodes. Helicon and Artes, instead, are only equipped with a "_shared scratch area_": this is a NFS storage space which is accessible by all the Helicon and Artes nodes.
+	- **A few important notes on the use of scratch areas**:
+	- * You should perform I/O operations on this area and, when the computation is over, copy any relevant output file back to your home directory or [ project folder](Resources%5Favailable%5Fon%5FTrantor.html#project%5Fareas).
+	- * At the end of your computation, remember to copy any relevant file stored in the scratch folder back into your home or [ project folder](Resources%5Favailable%5Fon%5FTrantor.html#project%5Fareas). In fact, **local scratch areas are not backed up and can be erased by the technical staff** for maintenance purposes.
+	- * Remember to clean up your scratch folder by deleting the files you don't need anymore (especially if you killed your job with qdel). Note that some computational software creates very big temporary files, so it is mandatory that you clean your scratch area from unnecessary files at least every month. The staff will delete them anyway, when necessary, without further notice.
+	- * Using your home directory or a project folder as a scratch space is strictly forbidden!
+		- Here's a recap of the scratch areas available in each nodes group:
+	- * **_Daneel_** : 6TB local scratch.
+	- * **_Hal_** : 11TB local scratch.
+	- * **_Diamond_** : 3TB local scratch.
+	- * **_Aurora_** : 4.9TB local scratch.
+	- * **_Kalgan_** : 8.7TB local scratch.
+	- * **_Artes and Helicons_** : 25TB per-user **shared** scratch.
+	- * **_Oromasdes03 (previously called Ananke)_** : 1.1TB local scratch.
+	- * **_Hypnos_** : 1.7TB local scratch (mounted under _/scratch_) plus an additional 9.8TB **shared** scratch area with SSD cache (mounted under _/scratch\_ssd_).
+	- * **_Cinna_** : small local scratch area.
+	- * **_Anacreon_** : small local scratch area.
+	- * **_Gaia01_** : 890GB local scratch.
+		- You can use the following commands on the computing node to check how much space you are currently using:
+	- $ cd /scratch/$USER $ pwd /scratch/yourusername $ du -hs (this command could take a while) 7.5G
+	- ## FAQ
+	- ###  Requesting an interactive session, the correct way to directly access a node
+		- If you need to directly access a computation node, for example to test your job, you can use the flag `-I` (that is a capital i) of qsub to request an interactive session. For example:
+	- $ qsub -I -q q07daneel -l select=1:ncpus=4
+	- **IMPORTANT NOTE:**
+		- Interactive sessions are forbidden on the 7 and 14 days long queues for the following node groups:
+	- * _daneel_
+	- * _hal_
+	- * _helicon_
+	- * _anacreon_
+	- * _gaia_
+		- If you want to start an interactive session on these nodes, **use the 2 days long queues** instead.
+	- ###  I made a bad evaluation of my job resources
+		- Job resources (the ones you previously asked with qsub, ex. `-l walltime=xx:xx:xx`) can be fixed by using the `qalter` command. For example:
+	- $ qalter -l walltime=xx:xx:xx jobid
+		- You can use `qalter` command just to **decrement** the usage of a job resource. If you need to **increment a resource**, email us at hpcstaff@sns.it and explain your reasons. Then, the staff will proceed with the increase.
+	- ###  What if my execution machine has gone off-line?
+		- If the PBS server shuts down, or in the case of network issues between the server and the compute nodes, the jobs will continue their execution. Of course, in the event of a malfunction of a compute node, all the Jobs assigned to that node will be terminated. It is important to note that, in this last case, the Jobs on the dead node may still appear as "**Running**". If you want to check if your job is **effectively** running, proceed as follows:
+	- $ qstat -u $USER
+		- For each job id you want to check, type:
+	- $ qstat -f <job ID> | grep exec\_host
+		- This will print the slave machine on which the job is **presumably** running. So, log into that server and check if there is actually some processes of yours:
+	- $ top -u $USER
+		- If your job is not effectively running, you should provide the deletion of your own jobs with the following command:
+	- $ qdel -W force <job ID>
+	- **Final note:** PBS can be configured so to automatically re-queued the Jobs affected by a malfunctioning event. However, this behaviour may lead to several other (tricky) problems so it has been disabled (the "-r n" flags are automatically added to every qsub).
+- https://hpccenter.sns.it/page/wiki/pages/notes_on_singularity.html
+	- [ Singularity](https://sylabs.io/singularity/) is a container platform designed to run complex applications on HPC clusters in a simple, portable, reproducible and escalation-safe way. You can build a container using Singularity on your workstation, and then run it on the compute nodes of the Trantor cluster.
+		- At the following URL you can find a very good tutorial about Singularity:
+	- [ https://singularity-tutorial.github.io/ ](https://singularity-tutorial.github.io/)
+		- You are also warmly welcome to read the official user guide:
+	- [ https://sylabs.io/guides/3.6/user-guide/index.html ](https://sylabs.io/guides/3.6/user-guide/index.html)
+		- Currently, you can run Singularity containers on the following nodes:
+	- * Daneel
+	- * Hal
+	- * Helicon
+	- * Hypnos
+	- * Oromasdes03
+		- Please note that, due to technical and security reasons, **you are not allowed to build containers on the cluster**. At this time, the suggested workflow is the following:
+	- 1. Build the container on your workstation as a SIF file.
+	- 2. Copy the SIF file in your home directory on Trantor (e.g. by using scp or sftp).
+	- 3. Run the container on compute nodes by submitting a PBS job.
+		- Due to known incompatibilities with NFS, you should not convert SIF images to "sandboxes" on the Trantor cluster (e.g. via the `singularity build` or the `singularity run --writable` commands). Running SIF images from NFS locations (such as your home directory) is the best and safe way.
+		- CUDA-based containers can be run only on daneel01-03 nodes (the only nodes equipped with GPUs). To this end, you need to provide the "--nv" flag when executing the `singularity shell` or the `singularity run` commands. Also, do not forget to reserve one or more GPUs by explicitly requesting "**_ngpus_**" resources when submitting the job (for details: [ Submitting, inspecting and cancelling PBS Jobs ](Submitting%5FInspecting%5Fand%5FCancelling%5FPBS%5FJobs.html) ).
+		- To create a container for a CUDA-based application, it is recommended to start from the CUDA Docker images provided by NVIDIA: [ https://hub.docker.com/r/nvidia/cuda ](https://hub.docker.com/r/nvidia/cuda).
+		- You have to pay close attention to choose an image with an associated CUDA version equal to, or lower than, the one supported by the drivers currently installed on the Daneels. You can find the maximum CUDA version supported by the drivers by running the `nvidia-smi` command on a Daneel node. Then, to find the tag name associated to the required CUDA image, click on the "Tags" tab on the top of the [ https://hub.docker.com/r/nvidia/cuda ](https://hub.docker.com/r/nvidia/cuda) web page and filter the list by entering the desired CUDA version in the search box. You can finally download the image by using the following command:
+	- _singularity pull docker://nvidia/cuda:**tag\_name**_
+		- As an example, to download the image with the "devel" flavour of CUDA 10.2 based on Ubuntu 18.4 you have to execute the following command:
+	- _singularity pull docker://nvidia/cuda:10.2-devel-ubuntu18.04_
+		- Please note that support for CUDA-based containers should be considered experimental. If you find any problem, please report them to hpcstaff@sns.it
+- https://hpccenter.sns.it/page/wiki/pages/JupyterhubTrantor-UserGuide.pdf
+- https://hpccenter.sns.it/page/wiki/pages/A_brief_introduction_to_using_Conda_on_the_cluster.pdf
+-
