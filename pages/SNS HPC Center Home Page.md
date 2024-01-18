@@ -1,3 +1,8 @@
+- **Purpose of the HPC Center**
+	- The HPC Center offers technological and instrumental support to research groups, research centers and laboratories of the SNS to enable them to carry out their research activities
+	- The **core services** offered by the HPC Center are:
+		- Access to a CPU and GPU computing cluster
+		- Hosting of VM for research-related websites
 - **Forms and Modules**
 	- [Creation or renewal of an HPC user account](https://forms.sns.it/rwe2/module_preview.jsp?MODULE_TAG=HPC_01_ACCOUNTS&ELANG=it&IATL=it) (online)
 		- You will need to specify an internal referee for approval
@@ -9,3 +14,16 @@
 	- Request for the creation of a storage area destined to a research project: [project_area_request.docx](../assets/project_area_request_1705578400686_0.docx) (paper)
 	- Hosting of a non computationally intensive virtual machine (e.g. for simple website hosting): [hosting_request_non_intensive.docx](../assets/hosting_request_non_intensive_1705578542124_0.docx) (paper)
 	- Hosting of a computationally intensive virtual machine (e.g. for special research software needs or for a website demo of research software): [hosting_request_intensive.docx](../assets/hosting_request_intensive_1705578662751_0.docx) (paper)
+- **Contacts**
+	- Address: [📍 Piazza San Silvestro 12 - 56127 Pisa](http://maps.google.com/maps?q=43.713980,10.409946&zoom=4)
+	- HPC Staff: [✉️ hpcstaff@sns.it](mailto:hpcstaff@sns.it)
+	- HPC Committee: [✉️ hpccommittee@sns.it](mailto:hpccommittee@sns.it)
+- **Governance**
+	- The HPC Center of [SNS](https://www.sns.it/) was created on December 4, 2019 (D.D. n. 643 and 644)
+	- The policies and the development plan of the Center are set by the [HPC Committee](mailto:hpccommittee@sns.it), installed on April 7, 2020.
+	- The Committee is formed by three SNS faculty members and two HPC technical staff members, and takes decisions by majority voting. Its current members are:
+		- Andrea Ferrara, Full Professor and HPC Center Director
+		- Julien Bloino, Associate Professor
+		- Andrei Mesinger, Associate Professor
+		- Dario Balboni, HPC Center Chief Operating Officer
+		- Federico Calzolari, SNS Chief Cybersecurity Officer

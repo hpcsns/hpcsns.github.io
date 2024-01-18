@@ -10,12 +10,12 @@
  ;; Available options:
  ;; - :now for NOW/LATER style (default)
  ;; - :todo for TODO/DOING style
- :preferred-workflow :now
+ :preferred-workflow :todo
 
  ;; Exclude directories/files.
  ;; Example usage:
  ;; :hidden ["/archived" "/test.md" "../assets/archived"]
- :hidden []
+ :hidden ["/README.md"]
 
  ;; Define the default journal page template.
  ;; Enter the template name between the quotes.
@@ -54,7 +54,7 @@
 
  ;; Enable Block timestamps.
  ;; Default value: false
- :feature/enable-block-timestamps? false
+ :feature/enable-block-timestamps? true
 
  ;; Disable accent marks when searching.
  ;; After changing this setting, rebuild the search index by pressing (^C ^S).
@@ -89,7 +89,7 @@
  ;; Available options:
  ;;  - integer from 0 to 6 (Monday to Sunday)
  ;; Default value: 6 (Sunday)
- :start-of-week 6
+ :start-of-week 0
 
  ;; Specify a custom CSS import.
  ;; This option takes precedence over the local `logseq/custom.css` file.
@@ -133,6 +133,7 @@
  ;; :default-home {:page "Jun 3rd, 2021"}
  ;; 3. Set "home" as the home page and display multiple pages in the right sidebar:
  ;; :default-home {:page "home", :sidebar ["Page A" "Page B"]}
+ :default-home {:page "SNS HPC Center Home Page", :sidebar ["Menu" "Doing"]}
 
  ;; Set the default location for storing notes.
  ;; Default value: "pages"
@@ -292,7 +293,7 @@
  ;;  :journal?        false} ; Default value: false
 
  ;; Favorites to list on the left sidebar
- :favorites []
+ :favorites ["SNS HPC Center Home Page"]
 
  ;; Set flashcards interval.
  ;; Expected value:
@@ -416,4 +417,5 @@
  :editor/preferred-pasting-file? true
  :feature/enable-timetracking? false
  :feature/enable-whiteboards? false
- :feature/enable-flashcards? false}
+ :feature/enable-flashcards? false
+ :publishing/all-pages-public? true}
