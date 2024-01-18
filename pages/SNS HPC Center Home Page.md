@@ -3,6 +3,17 @@
 	- The **core services** offered by the HPC Center are:
 		- Access to a CPU and GPU computing cluster
 		- Hosting of VM for research-related websites
+- **Useful Links**
+	- **General Documentation**
+		- [[HPC Quickstart]]: How to move your first steps in the HPC Cluster
+		- [[VPN Access]]: How to access the cluster from outside the SNS network
+		- [[Cluster Resources]]: What resources are available in the cluster
+	- **Learning Material**
+		- [[Basic Linux Commands]]
+		- [[Sending Jobs on the Cluster]]
+		- [[Usage of Singularity]]
+		- [[Jupyter Notebooks]]
+		- [[Using Conda]]
 - **Forms and Modules**
 	- [Creation or renewal of an HPC user account](https://forms.sns.it/rwe2/module_preview.jsp?MODULE_TAG=HPC_01_ACCOUNTS&ELANG=it&IATL=it) (online)
 		- You will need to specify an internal referee for approval
@@ -27,3 +38,10 @@
 		- Andrei Mesinger, Associate Professor
 		- Dario Balboni, HPC Center Chief Operating Officer
 		- Federico Calzolari, SNS Chief Cybersecurity Officer
+- **Staff**
+	- Operating Officer: Dario Balboni
+	- UNIX System Administrators
+		- For scientific computing: Alberto Coduti, Dario Balboni
+		- For the humanities: Mariano Mirra, Matteo Bernardini
+	- Web and Database Development: Andrea Ficini
+	- Networking and Infrastructure: Sergio Fenicia, Mariano Mirra
