@@ -293,7 +293,7 @@
  ;;  :journal?        false} ; Default value: false
 
  ;; Favorites to list on the left sidebar
- :favorites ["SNS HPC Center Home Page"]
+ :favorites ["Trantor Cheatsheet" "SNS HPC Center Home Page"]
 
  ;; Set flashcards interval.
  ;; Expected value:

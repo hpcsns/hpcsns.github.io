@@ -5,15 +5,22 @@
 		- Hosting of VM for research-related websites
 - **Useful Links**
 	- **General Documentation**
-		- [[HPC Quickstart]]: How to move your first steps in the HPC Cluster
-		- [[VPN Access]]: How to access the cluster from outside the SNS network
+		- [[HPC Quickstart]]: Move your first steps in the HPC Cluster
+		- [[VPN Access]]: Access the cluster from outside the SNS network
 		- [[Cluster Resources]]: What resources are available in the cluster
+		- [[Trantor Cheatsheet]]: Condensed useful Trantor-specific information
 	- **Learning Material**
-		- [[Basic Linux Commands]]
-		- [[Sending Jobs on the Cluster]]
-		- [[Usage of Singularity]]
-		- [[Jupyter Notebooks]]
-		- [[Using Conda]]
+		- **Cheatsheets**
+			- ![linux_cheat_sheet.pdf](../assets/linux_cheat_sheet_1705662849893_0.pdf): basic linux commands
+			- [DevHints](https://devhints.io/): a vast collection of cheatsheet
+		- **Guides and Tutorials**
+			- [[Sending Jobs on Trantor with PBS]]
+			- [[Usage of Singularity on Trantor]]
+			- [[Jupyter Notebooks on Trantor]]
+			- [[Using Conda on Trantor]]
+		- **Selection of External Material**
+			- [[Learn Command Line: Bash]]
+			- [[Learn Code Version Control: Git]]
 - **Forms and Modules**
 	- [Creation or renewal of an HPC user account](https://forms.sns.it/rwe2/module_preview.jsp?MODULE_TAG=HPC_01_ACCOUNTS&ELANG=it&IATL=it) (online)
 		- You will need to specify an internal referee for approval
