@@ -133,7 +133,7 @@
  ;; :default-home {:page "Jun 3rd, 2021"}
  ;; 3. Set "home" as the home page and display multiple pages in the right sidebar:
  ;; :default-home {:page "home", :sidebar ["Page A" "Page B"]}
- :default-home {:page "SNS HPC Center Home Page", :sidebar ["Menu" "Doing"]}
+ :default-home {:page "Home Page"}
 
  ;; Set the default location for storing notes.
  ;; Default value: "pages"
@@ -293,7 +293,7 @@
  ;;  :journal?        false} ; Default value: false
 
  ;; Favorites to list on the left sidebar
- :favorites ["Trantor Cheatsheet" "SNS HPC Center Home Page"]
+ :favorites ["Trantor Cheatsheet" "Home Page"]
 
  ;; Set flashcards interval.
  ;; Expected value:
