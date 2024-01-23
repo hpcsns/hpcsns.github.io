@@ -9,6 +9,7 @@
 		- [[VPN Access]]: Access the cluster from outside the SNS network
 		- [[Cluster Resources]]: What resources are available in the cluster
 		- [[Trantor Cheatsheet]]: Condensed useful Trantor-specific information
+		- [[AI Assistants List]]: Useful coding-related AI Websites
 	- **Learning Material**
 		- **Cheatsheets**
 			- ![linux_cheat_sheet.pdf](../assets/linux_cheat_sheet_1705662849893_0.pdf): basic linux commands

@@ -1,0 +1,3 @@
+- [ChatGPT](https://chat.openai.com): The well known model by OpenAI, free the basic GPT3.5 version but you have to pay to use the newest GPT4 (with search, image generation and understanding, file upload, script execution)
+- [Google Bard](https://bard.google.com/): The Large Language Model by Google with integrated Search (free)
+- [Phind](https://www.phind.com/agent?home=true): A chat model with internet search functions tailored to code questions (no registration needed)
