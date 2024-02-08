@@ -36,4 +36,12 @@ export default defineConfig({
 	    fileName: "components",
 	},
     },
+    server: {
+	proxy: {
+	    "/api": {
+		target: "http://localhost:11434",
+		changeOrigin: true,
+	    },
+	},
+    },
 })
