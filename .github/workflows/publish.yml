@@ -9,6 +9,14 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: logseq/publish-spa@v0.3.0
+      - name: Build custom components
+        run: cd ui && npm i && npm run build && cd ..
+      - name: Add custom components to website
+        run: cp ui/dist/components* $GITHUB_WORKSPACE/www/static/js/
+      - name: Load custom components
+        run: sed -i 's#<body>#<body><script src="/static/js/components.js" type="module"></script>#g' $GITHUB_WORKSPACE/www/index.html
+      - name: Load the chatbot component
+        run: sed -i 's#<div id="root"></div>#<div id="root"></div><hpc-chatbot></hpc-chatbot>#g' $GITHUB_WORKSPACE/www/index.html
       - name: Add a nojekyll file # to make sure asset paths are correctly identified
         run: touch $GITHUB_WORKSPACE/www/.nojekyll
       - name: Deploy 🚀
