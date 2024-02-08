@@ -25,14 +25,14 @@
 - **Forms and Modules**
 	- [Creation or renewal of an HPC user account](https://forms.sns.it/rwe2/module_preview.jsp?MODULE_TAG=HPC_01_ACCOUNTS&ELANG=it&IATL=it) (online)
 		- You will need to specify an internal referee for approval
-		- In case you are unable to use the online form, you can use the paper version: [account_request.docx](../assets/account_request_1705578855437_0.docx)
+		- In case you are unable to use the online form, you can use the paper version: [account_request.docx](file://./assets/account_request_1705578855437_0.docx)
 			- The paper form *must be signed* by you and your internal referee
 			- *The internal referee* must then submit it *in electronic format* to hpccommittee@sns.it
 	- [Request for access to a restricted view website](https://forms.sns.it/rwe2/module_preview.jsp?MODULE_TAG=HPC_02_VPNWEB&ELANG=it&IATL=it) (online)
 	- [Webmaster responsibility form for an hosted website](https://forms.sns.it/rwe2/module_preview.jsp?MODULE_TAG=HPC_04_SYSADMIN&ELANG=it&IATL=it) (online)
-	- Request for the creation of a storage area destined to a research project: [project_area_request.docx](../assets/project_area_request_1705578400686_0.docx) (paper)
-	- Hosting of a non computationally intensive virtual machine (e.g. for simple website hosting): [hosting_request_non_intensive.docx](../assets/hosting_request_non_intensive_1705578542124_0.docx) (paper)
-	- Hosting of a computationally intensive virtual machine (e.g. for special research software needs or for a website demo of research software): [hosting_request_intensive.docx](../assets/hosting_request_intensive_1705578662751_0.docx) (paper)
+	- Request for the creation of a storage area destined to a research project: [project_area_request.docx](file://./assets/project_area_request_1705578400686_0.docx) (paper)
+	- Hosting of a non computationally intensive virtual machine (e.g. for simple website hosting): [hosting_request_non_intensive.docx](file://./assets/hosting_request_non_intensive_1705578542124_0.docx) (paper)
+	- Hosting of a computationally intensive virtual machine (e.g. for special research software needs or for a website demo of research software): [hosting_request_intensive.docx](file://./assets/hosting_request_intensive_1705578662751_0.docx) (paper)
 - **Contacts**
 	- Address: [📍 Piazza San Silvestro 12 - 56127 Pisa](http://maps.google.com/maps?q=43.713980,10.409946&zoom=4)
 	- HPC Staff: [✉️ hpcstaff@sns.it](mailto:hpcstaff@sns.it)
