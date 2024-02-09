@@ -640,11 +640,15 @@ function Lt(e, t, n) {
   ], c = "🟡", r;
   const l = { user: "👤", assistant: "🤖" };
   pt(async () => {
-    const f = await fetch(`${i}/api/generate`, {
-      method: "POST",
-      body: JSON.stringify({ model: K })
-    });
-    n(1, c = f.status === 200 ? "🟢" : "🔴");
+    try {
+      const f = await fetch(`${i}/api/generate`, {
+        method: "POST",
+        body: JSON.stringify({ model: K })
+      });
+      n(1, c = f.status === 200 ? "🟢" : "🔴");
+    } catch {
+      n(1, c = "🔴");
+    }
   });
   async function u() {
     n(0, o = [...o, { role: "user", content: r }]), n(2, r = ""), n(1, c = "🔵");
@@ -663,7 +667,7 @@ function Lt(e, t, n) {
   }
   return e.$$.update = () => {
     e.$$.dirty & /*$page*/
-    32 && (i = `${s.protocol}//${s.hostname}:11434`);
+    32 && (i = `${s.protocol}//${s.hostname}:${s.port}`);
   }, [
     o,
     c,
