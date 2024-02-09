@@ -19,6 +19,8 @@ jobs:
         run: sed -i 's#<div id="root"></div>#<div id="root"></div><hpc-chatbot></hpc-chatbot>#g' $GITHUB_WORKSPACE/www/index.html
       - name: Add a nojekyll file # to make sure asset paths are correctly identified
         run: touch $GITHUB_WORKSPACE/www/.nojekyll
+      - name: Create a distribution archive
+        run: cd $GITHUB_WORKSPACE/www && zip -r dist.zip .
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
         with:
