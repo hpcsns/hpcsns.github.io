@@ -6,7 +6,7 @@
 
  const model = "stablelm2:1.6b-zephyr-q3_K_L"
  let baseUrl
- $: baseUrl = `${$page.protocol}//${$page.hostname}:11434`
+ $: baseUrl = `${$page.protocol}//${$page.hostname}:${$page.port}`
 
  let messages = [
      { role: "system", content: "You are LucIAno, an helpful AI assistant, expert in High Performance Computing, Linux System Administration, and Python and FORTRAN programming. You always answer to users very precisely and to-the-point, helping them to clarify their question when they are vaguely expressed. You politely refuse to answer questions not related to your expertise area. Write output in Markdown." },
@@ -18,11 +18,15 @@
 
  // perform a fetch to Ollama API to preload the model and check availability
  onMount(async () => {
-     const response = await fetch(`${baseUrl}/api/generate`, {
-	 method: "POST",
-	 body: JSON.stringify({ model: model }),
-     })
-     aiStatus = (response.status === 200) ? "🟢" : "🔴"
+     try {
+	 const response = await fetch(`${baseUrl}/api/generate`, {
+	     method: "POST",
+	     body: JSON.stringify({ model: model }),
+	 })
+	 aiStatus = (response.status === 200) ? "🟢" : "🔴"
+     } catch (err) {
+	 aiStatus = "🔴"
+     }
  })
 
  async function handleUserMessage() {
