@@ -1,0 +1,513 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="blog,personal,responsive,search,font awesome,pages,posts,multilingual,highlight.js,syntax highlighting,premium,shortcuts">
+    <title> News | High Performance Computing Center</title>
+    <meta itemprop="name" content="News">
+    <meta property="og:title" content="News">
+    <meta property="og:url" content="/page/news/">
+    <meta property="og:site_name" content="High Performance Computing Center">
+    <meta property="og:type" content="article">
+
+
+
+    <link href="../news/" rel="alternate" type="application/rss+xml" title="High Performance Computing Center" />
+    <link href="../news/" rel="feed" type="application/rss+xml" title="High Performance Computing Center" />
+    
+
+    <link rel="shortcut icon" href="../../logo.ico">
+    
+    <link rel="stylesheet" href="../../theme.css">
+
+    
+</head>
+
+<body class="BilboBaggins-theme">
+
+    
+    <nav>
+
+    <div class="container">
+        <ul class="topnav">
+            
+            
+            <li><a href="../about/index.html">About</a></li>
+            
+            
+            
+            <li><a href="../news/index.html">News</a></li>
+            
+            
+            
+            <li><a href="../people/index.html">People</a></li>
+            
+            
+            
+            <li><a href="../wiki/index.html">WIKI</a></li>
+            
+
+            
+            <li><a href="../research-support/index.html">Research support</a></li>
+            
+            
+            
+            <li><a href="../forms/index.html">Forms</a></li>
+            
+            
+            
+            <li><a href="../privacy/index.html">Privacy policy</a></li>
+            
+            
+            
+            <li><a href="../contacts/index.html">Contacts</a></li>
+            
+            
+        </ul>
+
+
+    </div>
+</nav>
+
+
+    
+<header>
+
+    <div class="container">
+        <div class="logo">
+            <a id="siteBaseUrl" href="../../index.html" class="logo">
+                
+                <img src="../../logo.png" alt="" height=177>           
+                
+
+            </a>
+        </div>
+        <div class="titles">
+            <h3 class="title"><a
+                    href="../../index.html">High Performance Computing Center</a></h3>
+            
+            <span class="subtitle">Scuola Normale Superiore</span>
+            
+        </div>
+        
+        
+            <div class="toggler">
+                
+                <i class="fa fa-bars" aria-hidden="true"></i>
+            </div>
+        </div>
+</header>
+
+
+    <div class="main container">
+        
+     
+    <div class="article-wrapper u-cf single">
+        
+            <a class="bubble" href="https://www.sns.it/it/centro-high-performance-computing">
+</a>
+
+<article class="default article">
+    
+
+  <div class="content">
+    
+    <div class="meta">
+    	News
+    </div>
+
+    <div class="mw-parser-output">
+
+        <!--
+        <div>
+            <h4>May 12, 2022 - Matlab Parallel Server</h4>
+            <p>
+                MATLAB Parallel Server is now available on the Trantor cluster, 
+                allowing to execute long-running CPU and/or GPU intensive 
+                computations on high-performance compute nodes.<br/>
+                Jobs submission and results retrieval is performed directly
+                from the MATLAB instance running on your personal workstation.
+            </p>
+            <p>
+                Refer to the
+                <a href="/page/wiki/pages/Running_MATLAB_computations_on_Trantor.pdf">
+                    <b>user guide</b>
+                </a>
+                for details on the required configuration and instructions on how
+                to submit jobs and retrieve results.
+            </p>
+            <br/>
+        </div>
+        -->
+
+        <div>
+            <h4>March 29, 2022 - JupyterHub improvements</h4>
+            <p>
+                A new version of our customized JupyterHub installation is now available!<br/>
+                Release notes:
+            </p>
+            <ul style="margin-left: 3rem;">
+                <li>Notebooks can now be run on any compute node you have access to.</li>
+                <li>
+                    You can now provide a bash script to be executed before starting
+                    the notebook server, e.g. with the purpose of initializing the environment.
+                </li>
+                <li>Several usability improvements and bug fixes.</li>
+            </ul>
+            <p>
+                Please report any problem to hpcstaff@sns.it.
+            </p>
+            <br/>
+        </div>
+        
+        <div>
+            <h4>February 8, 2022 - New compute nodes: Anacreon and Cinna</h4>
+            <p>
+                Two new groups of nodes has been added to Trantor, "Anacreon" and "Cinna".<br/>
+                Technical specifications are listed 
+                <a href="../wiki/pages/Group_owned_resources_on_Trantor.html">here</a>.
+            </p>
+            <p>
+                <b>
+                    Access to Anacreon and Cinna nodes is restricted 
+                    respectively to members of the "<em>bioinfo</em>"
+                    and "<em>compnanobio</em>" groups.
+                </b>
+            </p>
+            <p>
+                Use the corresponding <em>q07anacreon</em>, <em>q14anacreon</em>,
+                <em>q07cinna</em> and <em>q14cinna</em> PBS queues to submit jobs
+                to these nodes (see 
+                <a href="../wiki/pages/Submitting_Inspecting_and_Cancelling_PBS_Jobs.html">here</a>
+                for details).
+            </p>
+            <br/>
+        </div>
+
+        <div>
+            <h4>January 13, 2022 - Cluster stop from January 31 to February 2</h4>
+            <p>
+                Due to a maintenance intervention on the cooling system in San Silvestro,
+                there will be a cluster shutdown from Monday January 31 10:00 AM to
+                Wednesday February 2.
+            </p>
+            <p>
+                <b>
+                    Please be sure to terminate all jobs and recover any data 
+                    you may need before Monday January 31 10:00 AM.
+                </b>
+            </p>
+            <br/>
+        </div>
+        
+        <div>
+            <h4>December 17, 2021 - Important limitations of the storage system's snapshotting feature</h4>
+            <p>
+                The native snapshotting mechanism our storage system does not
+                support the preservation of <b>hard-links</b> in snapshots.
+                That means that if multiple files points to the same blocks of
+                data on disk, <b>only one of those files will be preserved in
+                snapshots</b> (you can find a gentle introduction to hard-links 
+                <a href="https://www.redhat.com/sysadmin/linking-linux-explained">here</a>).
+            </p>
+            <p>
+                That fact implies that, in those scenarios where hard-links are
+                in use, there may be loss of information when recovering files
+                from snapshots (since only one hard-link for each data file
+                would be recovered). Examples of such scenarios include:
+            </p>
+            <ul style="margin-left: 3rem;">
+                <li>
+                    Software installations that make use of hard-links
+                    (such as <b>conda virtual environments</b>).
+                </li>
+                <li>
+                    Hard-links manually created by users.
+                </li>
+                <li>
+                    Files generated as output by applications, 
+                    if the software creates hard-links
+                    (e.g. as a way to avoid data duplication).
+                    Fortunately, such cases are quite rare.
+                </li>
+            </ul>
+            <p>
+                Unfortunately, there is nothing we can do to overcome this
+                limitation, so please <b>avoid the use of hard-links as much
+                as possible and use soft-links instead</b>.
+            </p>
+            <br/>
+        </div>
+
+        <div>
+            <h4>October 11, 2021 - New head node with remote desktop</h4>
+            <p>
+                A new head-node equipped with the Xfce desktop environment
+                is now available: <em>trantor03.sns.it</em>
+
+            </p>
+            <p>
+                You can connect to the new head-node via ssh (as usual) or by opening
+                a remote desktop session. Detailed instructions are discussed in the
+                <a href="../wiki/pages/Connecting_to_the_head_node.html#Getting_started_X2Go">wiki</a>.
+            </p>
+            <br/>
+        </div>
+
+        <div>
+            <h4>September 15, 2021 - New compute node: Kalgan01</h4>
+            <p>
+                A new node (DELL R750) has been added to Trantor.
+                It is named <em>kalgan01</em> and equipped with 
+                2 Intel Xeon Platinum 8380 CPU @ 2.30GHz (40 physical 
+                cores per socket), 2 TB of memory and a scratch area 
+                of 8.7 TB.
+            </p>
+            <p>
+                The corresponding <em>q07kalgan</em> e <em>q14kalgan</em>
+                PBS queues have been created.
+                
+            </p>
+            <p>
+                <b>
+                    Access to Kalgan01 is restricted to members of the
+                    "<em>kalgan</em>" group
+                </b>.
+            </p>
+            <br/>
+        </div>
+
+        <div>
+            <h4>August 16, 2021 - New Aurora nodes</h4>
+            <p>
+                A group of 11 new nodes (HPDL650 Gen10) has been added to Trantor.
+                They are named <em>aurora[01-11]</em> and are equipped with 
+                4 Intel Xeon 6252N @2.3 GHz (24 physical cores per socket), 
+                512 GB of memory and a scratch area of 4.9 TB
+                (with 750 GB of SSD cache).
+            </p>
+            <p>
+                The corresponding <em>q07aurora</em> e <em>q14aurora</em>
+                PBS queues have been created.
+                
+            </p>
+            <p>
+                <b>
+                    Access to Aurora nodes is restricted to members of the
+                    "<em>diamond</em>" group
+                </b>.
+            </p>
+            <br/>
+        </div>
+
+        <div>
+            <h4>April 12, 2021 - Request of creation of a storage area destined to a research project</h4>
+            <p>
+                In the <a href="../forms/index.html">'Forms'</a> page you can find a form to request, 
+                to the Committee and the Staff, additional storage for a specific research project.
+                Such additional storage will be reserved for a limited amount of time (max 1 year).
+            </p>
+            <p>
+                The creation of a new area must be proposed by tenured personnel and must
+                include the list of users that can share read/write access to the area.
+            </p>
+            <p>
+                You can download the form <a href="../forms/pages/project_area_request.docx">here</a>.
+            </p>
+            <br/>
+        </div>
+
+        <div>
+            <h4>March 18, 2021 - Changes to PBS queues settings</h4>
+            <p>
+                We changed the settings related to the maximum number of running
+                and queued jobs (per user) accepted within a queue, as follows: 
+                <ul style="margin-left: 3rem;">
+                    <li><b>q07daneel</b>: max 2 running jobs and 8 queued jobs per user.</li>
+                    <li><b>q14daneel</b>: max 2 running jobs and 8 queued jobs per user.</li>
+                    <li><b>q07hal</b>: max 1 running job and 4 queued jobs per user.</li>
+                    <li><b>q14hal</b>: max 1 running job and 4 queued jobs per user.</li>
+                    <li><b>q07helicon</b>: max 4 running jobs per user. No limits on queued jobs.</li>
+                    <li><b>q14helicon</b>: max 4 running jobs per user. No limits on queued jobs.</li>
+                    <li><b>q07artes</b>: max 3 running jobs per user. No limits on queued jobs.</li>
+                    <li><b>q14artes</b>: max 3 running jobs per user. No limits on queued jobs.</li>
+                    <li><b>q07diamond</b>: max 10 running jobs per user. No limits on queued jobs.</li>
+                    <li><b>q14diamond</b>: max 7 running jobs per user. No limits on queued jobs.</li>
+                </ul>
+            </p>
+            <br/>
+        </div>
+
+        <div>
+            <h4>March 8, 2021 - New Intel compilers suite available on Trantor</h4>
+            <p>
+                The Intel OneAPI compilers suite is now available on Trantor.
+                You can use it by loading the module <code>intel/2021.1.1</code> 
+                and any relevant module under <code>intel/*</code>.
+            </p>
+            <p>
+                <b>
+                    The licence is "single fixed Multi-Node", meaning that only
+                    one person at a time can use the compiler, from any computer.
+                </b>
+            </p>
+            <p>
+                Since the suite has many tools and libraries, 
+                we decided to install only some of them, to avoid cluttering.
+                Please contact us if you need something that is not installed.
+            </p>
+            <br/>
+        </div>
+
+        <div>
+            <h4>Dec 23st, 2020 - Singularity is now available on daneels and hals</h4>
+            <p>
+                <a href="https://sylabs.io/singularity/">Singularity Community Edition</a>
+                is now available on the Daneels and Hals nodes of the Trantor cluster.
+                <br/>
+                For details, please refer to the
+                <a href="../wiki/pages/notes_on_singularity.html">
+                    dedicated section of the wiki.
+                </a> 
+            </p>
+            <br/>
+        </div>
+
+        <div>
+            <h4>Dec 23st, 2020 - Daneel01 temporarily back in the queues</h4>
+            <p>
+                Daneel01 has been put back in the queues; a few caveats on this node:
+                <ol>
+                    <li>
+                        GPU0 is detected but does not work correctly, 
+                        so be sure not to use it in your applications.
+                    </li>
+                    <li>
+                        We started a maintenance call on this; 
+                        likely the replacement will be available in january 2021, 
+                        but in any case consider that we may be forced to shut it 
+                        down with very short notice.
+                    </li>
+                </ol>
+            </p>
+            <br/>
+        </div>
+
+        <div>
+            <h4>Dec 21st, 2020 - Hal nodes</h4>
+            <p>
+                The hal01 and hal02 nodes (Quad socket Dell R840 with 56 core Xeon Platinum 8280, 3.0 TB of memory and 9 TB of scratch) are now 
+                available in the Trantor cluster; the q02hal and q07hal queues have been created.<br/>
+
+                Note that even if these nodes have a lot of powerful cores scaling and running multiple jobs has not been up to expectations, so 
+                consider the current queue and node setting experimental.
+
+            </p>
+            <br/>
+        </div>
+
+ 
+        <div>
+            <h4>Dec 7th, 2020 - artes MPI nodes</h4>
+            <p>
+                A new group of nodes, called <tt>artes0[1-6]</tt> (dual Xeon(R) Gold 5218 CPU @ 2.30GHz, 32 cores, 128 GB memory ) is now open to computation 
+                in the Trantor cluster, for people in the <tt>diamond</tt> group, set up for MPI type jobs.
+            </p>
+            <br/>
+        </div>
+        
+        
+        <div>
+            <h4>Dec 1st, 2020 - R support in JupyterHub</h4>
+            <p>
+                JupyterHub@Trantor (<a href="https://jupyter.sns.it">https://jupyter.sns.it</a>) 
+                now supports R-based notebooks.
+                <br/>
+                In order to exploit this feature, you have to create an R-based Conda environment 
+                as explained in the updated <a href="https://hpccenter.sns.it/page/wiki/pages/JupyterhubTrantor-UserGuide.pdf">User Guide</a>.
+                <br/>
+                In addition, the "<a href="https://hpccenter.sns.it/page/wiki/pages/A_brief_introduction_to_using_Conda_on_the_cluster.pdf">Brief introduction to Conda</a>" 
+                has also been updated with instructions on creating R-based environments.
+                <br/>
+                As before, the access to JupyterHub@Trantor must be explicitly enabled, 
+                so if you are interested send a request to hpcstaff@sns.it.
+            </p>
+            <br/>
+        </div> 
+	
+    </div>  
+    
+  </div>
+
+
+
+</article>
+
+        
+    </div>
+
+    
+        
+    
+
+     
+
+    </div>
+
+    
+<footer>
+    <div class="container">
+
+        
+        <div class="recent-posts">
+            <strong>Latest posts</strong>
+            <ul>
+                
+                <li>
+                    <a href="../news/index.html">News</a>
+                </li>
+                
+            </ul>
+        </div>
+        
+
+        
+
+<!--
+        <div class="right">
+            
+            <div class="external-profiles">
+                <strong>Social media</strong>
+
+                
+                <a href="https://twitter.com/" target="_blank"><i class="fab fa-twitter"></i></a>
+                
+                <a href="https://github.com/" target="_blank"><i class="fab fa-github"></i></a>
+                
+            </div>
+            
+        </div>
+-->
+    </div>
+</footer>
+
+
+<div class="credits">
+    <div class="container">
+
+        <div class="author">
+            <a href=""  target="_blank">
+                2020 HPC Center SNS - Inspired at github.com/Lednerb Bilberry Hugo Theme
+            </a>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="../../theme.js"></script>
+
+
+</body>
+
+</html>

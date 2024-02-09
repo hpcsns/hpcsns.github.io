@@ -1,0 +1,12 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/ingydotnet/git-subrepo#readme
+;
+[subrepo]
+	remote = /home/dbalboni/SitoCentroHPC
+	branch = master
+	commit = d201ab73d26f3e589224cdf2e415617db37e04b6
+	parent = 65d2cb90310ac628ce129126e8ac780de59b243a
+	method = merge
+	cmdver = 0.4.6
