@@ -9,6 +9,8 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: logseq/publish-spa@v0.3.0
+      - name: Fix some assets are not copied
+        run: cp assets/* $GITHUB_WORKSPACE/www/assets/
       - name: Build custom components
         run: cd ui && npm i && npm run build && cd ..
       - name: Add custom components to website
