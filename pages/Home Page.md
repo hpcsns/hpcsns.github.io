@@ -4,6 +4,7 @@
 		- Access to a CPU and GPU computing cluster
 		- Hosting of VM for research-related websites
 - **Useful Links**
+	- [**Old HPC Website**](file://./oldindex.html): If you need something from the past
 	- **General Documentation**
 		- [[HPC Quickstart]]: Move your first steps in the HPC Cluster
 		- [[VPN Access]]: Access the cluster from outside the SNS network
