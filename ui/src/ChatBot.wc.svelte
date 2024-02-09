@@ -82,6 +82,7 @@
  }
  
  .chat-bot {
+     background-color: white;
      min-width: 25%;
      border: 1px solid grey;
      border-radius: 5px;
