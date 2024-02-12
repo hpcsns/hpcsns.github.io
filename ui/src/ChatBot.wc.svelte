@@ -41,9 +41,15 @@
 </button>
 
 <content class="absolute bottom-2 right-2 py-2 px-4 bg-white text-base rounded-md flex flex-col items-stretch" class:hidden={!chatBotOpen}>
-    <div class="mb-4 font-bold text-xl">
-	<span>✨ HPC Assistant</span>
-	<span title={status ? $status.description : ""}>{status ? $status.icon : ""}</span>
+    <div class="mb-4 font-bold text-xl flex flex-row items-stretch justify-between">
+	<div></div>
+	<div>
+	    <span>✨ HPC Assistant</span>
+	    <span title={status ? $status.description : ""}>{status ? $status.icon : ""}</span>
+	</div>
+	<div>
+	    <button title="Minify the assistant" on:click={() => chatBotOpen = false}>✖</button>
+	</div>
     </div>
     {#if model && chat}
 	{#each chat._.messages as message}
