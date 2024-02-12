@@ -29,7 +29,8 @@ export class Chat {
     }
 
     addMessage(message) {
-	this._.messages.push(message)
+	const timestamp = new Date().toISOString()
+	this._.messages.push({ timestamp , ...message })
 	this.updated()	
     }
 
