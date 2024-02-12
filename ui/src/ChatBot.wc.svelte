@@ -4,18 +4,7 @@
  import { onMount } from "svelte"
  import { Ollama } from "./lib/ollama.js"
  import { Chat } from "./lib/chats.js"
-
- // prompt to use as the initial one 
- const systemPrompt = { role: "system", content: "You are LucIAno, an helpful AI assistant, expert in High Performance Computing, Linux System Administration, and Python and FORTRAN programming. You always answer to users very precisely and to-the-point, helping them to clarify their question when they are vaguely expressed. You politely refuse to answer questions not related to your expertise area. Write output in Markdown." }
-
- // AI models to use in order of preference
- const modelList = [
-     { model: "notux:8x7b-v1-q3_K_L", premium: true },
-     { model: "nous-hermes2-mixtral:8x7b-dpo-q3_K_L", premium: true },
-     { model: "solar:10.7b-instruct-v1-q3_K_L", premium: true },
-     { model: "mistral:7b-instruct-v0.2-q3_K_L", premium: false },
-     { model: "stablelm2:1.6b-zephyr-q3_K_L", premium: false },
- ]
+ import config from "./lib/config.js"
 
  let ollama // ollama object to interact with the server
  let status // status variable bind to the svelte store of ollama
@@ -26,15 +15,16 @@
      const baseUrl = `${window.location.protocol}//${window.location.hostname}:${window.location.port}`
      ollama = new Ollama(baseUrl)
      status = ollama.status
-     model = await ollama.getBestModel(modelList)
+     model = await ollama.getBestModel(config.modelList)
      if (model) {
 	 await ollama.preloadModel(model)
 	 chat = new Chat(() => chat = chat, ollama)
-	 chat.addMessage(systemPrompt)
+	 chat.addMessage(config.systemPrompt)
      }
  })
 
  let text
+ let chatBotOpen = false
 
  const roleIcons = { user: "👤", assistant: "🤖" }
 
@@ -45,9 +35,16 @@
  }
 </script>
 
-<content class="chat-bot">
+<button class="bot-opener" class:hidden={chatBotOpen} on:click={() => chatBotOpen = true}>
+    <div class="text-bold">
+	<span>✨ Need Help?</span>
+	<span title={status ? $status.description : ""}>{status ? $status.icon : ""}</span>
+    </div>
+</button>
+
+<content class="chat-bot" class:hidden={!chatBotOpen}>
     <div class="mb-10 text-bold">
-	🤖 HPC AI Assistant
+	<span>🤖 HPC Assistant</span>
 	<span title={status ? $status.description : ""}>{status ? $status.icon : ""}</span>
     </div>
     {#if model && chat}
@@ -64,6 +61,8 @@
 		   placeholder="What do you want help with?" />
 	</form>
 	<div class="mt-10 text-small">The assistant makes mistakes, always check important information</div>
+	<div class="text-small">Also, the assistant cannot read the documentation yet</div>
+	<!-- TODO: Add the button "I need a Human!" that performs initial triage and writes a detailed email -->
     {/if}
 </content>
 
@@ -73,6 +72,10 @@
  .mt-10 { margin-top: 10px; }
  .text-small { font-size: 80%; }
 
+ .hidden {
+     visibility: hidden;
+ }
+ 
  .text {
      display: block;
      border-radius: 10px;
@@ -93,5 +96,18 @@
      display: flex;
      flex-direction: column;
      align-items: stretch;
+ }
+
+ .bot-opener {
+     border: 0;
+     background-color: #9a0eea;
+     color: white;
+     font-weight: 700;
+     font-size: 120%;
+     border-radius: 5px;
+     position: absolute;
+     bottom: 10px;
+     right: 10px;
+     padding: 10px 16px;
  }
 </style>
