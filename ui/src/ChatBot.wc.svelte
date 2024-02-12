@@ -26,6 +26,7 @@
 
  let text
  let chatBotOpen = false
+ let chatBotExpanded = false
 
  async function handleUserMessage() {
      chat.addMessage({ role: "user", content: text })
@@ -34,21 +35,27 @@
  }
 </script>
 
-<button class="absolute bottom-2 right-2 py-2 px-4 bg-violet-600 font-bold text-lg text-white rounded-lg" class:hidden={chatBotOpen} on:click={() => chatBotOpen = true}>
+<button class="absolute bottom-2 right-2 py-2 px-4 bg-violet-700 hover:bg-violet-600 font-bold text-lg text-white rounded-lg" class:hidden={chatBotOpen} on:click={() => chatBotOpen = true}>
     <span title="Try our AI Assistant">✨</span>
     <span class="px-1">Need Help?</span>
     <span title={status ? $status.description : ""}>{status ? $status.icon : ""}</span>
 </button>
 
-<content class="absolute bottom-2 right-2 py-2 px-4 bg-white text-base rounded-md flex flex-col items-stretch" class:hidden={!chatBotOpen}>
+<div class="absolute bottom-0 right-0 top-0 left-0 px-2 py-2 w-full h-full flex flex-row justify-end" class:hidden={!chatBotOpen}>
+    <content class="bg-white text-base rounded-md flex flex-col items-stretch h-full px-4 py-2"
+	     class:w-full={chatBotExpanded} class:max-w-1-3={!chatBotExpanded}>
     <div class="mb-4 font-bold text-xl flex flex-row items-stretch justify-between">
-	<div></div>
 	<div>
 	    <span>✨ HPC Assistant</span>
 	    <span title={status ? $status.description : ""}>{status ? $status.icon : ""}</span>
 	</div>
 	<div>
-	    <button title="Minify the assistant" on:click={() => chatBotOpen = false}>✖</button>
+	    {#if !chatBotExpanded}
+		<button title="Expand full width" on:click={() => chatBotExpanded = true}>↖️</button>
+	    {:else}
+		<button title="Reduce to lateral" on:click={() => chatBotExpanded = false}>↘️</button>
+	    {/if}
+	    <button title="Minify the assistant" on:click={() => chatBotOpen = false}>➖</button>
 	</div>
     </div>
     {#if model && chat}
@@ -81,10 +88,15 @@
 	    The AI server is currently unreachable
 	</div>
     {/if}
-</content>
+    </content>
+</div>
 
 <style>
  @tailwind base;
  @tailwind components;
  @tailwind utilities;
+
+ .max-w-1-3 {
+     max-width: 33.33%;
+ }
 </style>
