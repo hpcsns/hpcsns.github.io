@@ -42,7 +42,7 @@
 </button>
 
 <div class="absolute bottom-0 right-0 top-0 left-0 px-2 py-2 w-full h-full flex flex-row justify-end z-50" class:hidden={!chatBotOpen}>
-    <content class="bg-white text-base rounded-md flex flex-col items-stretch h-full px-4 py-2"
+    <content class="bg-violet-100 text-base rounded-md flex flex-col items-stretch h-full px-4 py-2"
 	     class:w-full={chatBotExpanded} class:max-w-1-3={!chatBotExpanded}>
     <div class="mb-4 font-bold text-xl flex flex-row items-stretch justify-between">
 	<div>
@@ -77,16 +77,12 @@
 	{/each}
 	
 	<form action="#" on:submit|preventDefault={handleUserMessage} class="my-2">
-	    <input disabled={status && $status.slug == "running"} class="w-full px-2 py-1 text-lg rounded-lg" bind:value={text} type="text"
+	    <input disabled={status && $status.slug == "running"} class="w-full px-2 py-1 text-lg rounded-lg bg-violet-100" bind:value={text} type="text"
 		   placeholder="What do you want help with?" />
 	</form>
 	<div class="mt-2 text-sm">The assistant makes mistakes, always check important information</div>
 	<div class="text-sm">Also, the assistant cannot read the documentation yet</div>
 	<!-- TODO: Add the button "I need a Human!" that performs initial triage and writes a detailed email -->
-    {:else}
-	<div class="text-lg">
-	    The AI server is currently unreachable
-	</div>
     {/if}
     </content>
 </div>
