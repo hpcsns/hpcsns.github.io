@@ -76,6 +76,10 @@
 	<div class="mt-2 text-sm">The assistant makes mistakes, always check important information</div>
 	<div class="text-sm">Also, the assistant cannot read the documentation yet</div>
 	<!-- TODO: Add the button "I need a Human!" that performs initial triage and writes a detailed email -->
+    {:else}
+	<div class="text-lg">
+	    The AI server is currently unreachable
+	</div>
     {/if}
 </content>
 
