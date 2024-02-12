@@ -41,7 +41,7 @@
     <span title={status ? $status.description : ""}>{status ? $status.icon : ""}</span>
 </button>
 
-<div class="absolute bottom-0 right-0 top-0 left-0 px-2 py-2 w-full h-full flex flex-row justify-end" class:hidden={!chatBotOpen}>
+<div class="absolute bottom-0 right-0 top-0 left-0 px-2 py-2 w-full h-full flex flex-row justify-end z-50" class:hidden={!chatBotOpen}>
     <content class="bg-white text-base rounded-md flex flex-col items-stretch h-full px-4 py-2"
 	     class:w-full={chatBotExpanded} class:max-w-1-3={!chatBotExpanded}>
     <div class="mb-4 font-bold text-xl flex flex-row items-stretch justify-between">
