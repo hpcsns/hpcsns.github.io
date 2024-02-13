@@ -42,48 +42,54 @@
 </button>
 
 <div class="absolute bottom-0 right-0 top-0 left-0 px-2 py-2 w-full h-full flex flex-row justify-end pointer-events-none" class:hidden={!chatBotOpen}>
-    <content class="bg-violet-100 text-base rounded-md flex flex-col items-stretch h-full px-4 py-2 overflow-y-scroll z-50 pointer-events-auto"
+    <content class="bg-violet-100 text-base rounded-md h-full px-4 py-2 z-50 pointer-events-auto
+		    flex flex-col items-stretch justify-between"
 	     class:w-full={chatBotExpanded} class:max-w-1-3={!chatBotExpanded}>
-    <div class="mb-4 font-bold text-xl flex flex-row items-stretch justify-between">
-	<div>
-	    <span>✨ HPC Assistant</span>
-	    <span title={status ? $status.description : ""}>{status ? $status.icon : ""}</span>
+	<div class="mb-4 font-bold text-xl flex flex-row items-stretch justify-between">
+	    <div>
+		<span>✨ HPC Assistant</span>
+		<span title={status ? $status.description : ""}>{status ? $status.icon : ""}</span>
+	    </div>
+	    <div>
+		{#if !chatBotExpanded}
+		    <button title="Expand full width" on:click={() => chatBotExpanded = true}>↖️</button>
+		{:else}
+		    <button title="Reduce to lateral" on:click={() => chatBotExpanded = false}>↘️</button>
+		{/if}
+		<button title="Minify the assistant" on:click={() => chatBotOpen = false}>➖</button>
+	    </div>
 	</div>
-	<div>
-	    {#if !chatBotExpanded}
-		<button title="Expand full width" on:click={() => chatBotExpanded = true}>↖️</button>
-	    {:else}
-		<button title="Reduce to lateral" on:click={() => chatBotExpanded = false}>↘️</button>
+	<div class="overflow-auto flex flex-col items-stretch">
+	    {#if model && chat}
+		{#each chat._.messages as message}
+		    {#if message.role != "system" }
+			<div class="rounded-md py-2 px-4 text-justify text-base block w-3/4 my-2"
+			     class:bg-sky-200={message.role == "user"} class:place-self-end={message.role == "user"}
+			     class:bg-lime-200={message.role == "assistant"} class:place-self-start={message.role == "assistant"}>
+			    
+			    <div class="mb-2 flex flex-row justify-between items-baseline">
+				<span class="font-bold">{#if message.role == "user"}You{:else}Assistant{/if}</span>
+				<span class="text-grey-500 text-sm">{$timeAgo(message.timestamp)}</span>
+			    </div>
+			    <div>
+				{message.content}
+			    </div>
+			</div>
+		    {/if}
+		{/each}
 	    {/if}
-	    <button title="Minify the assistant" on:click={() => chatBotOpen = false}>➖</button>
 	</div>
-    </div>
-    {#if model && chat}
-	{#each chat._.messages as message}
-	    {#if message.role != "system" }
-		<div class="rounded-md py-2 px-4 text-justify text-base block w-3/4 my-2"
-		     class:bg-sky-200={message.role == "user"} class:place-self-end={message.role == "user"}
-		     class:bg-lime-200={message.role == "assistant"} class:place-self-start={message.role == "assistant"}>
 
-		    <div class="mb-2 flex flex-row justify-between items-baseline">
-			<span class="font-bold">{#if message.role == "user"}You{:else}Assistant{/if}</span>
-			<span class="text-grey-500 text-sm">{$timeAgo(message.timestamp)}</span>
-		    </div>
-		    <div>
-			{message.content}
-		    </div>
-		</div>
+	<div>
+	    {#if model && chat}
+		<form action="#" on:submit|preventDefault={handleUserMessage} class="my-2">
+		    <input disabled={status && $status.slug == "running"} class="w-full px-2 py-1 text-lg rounded-lg bg-violet-100" bind:value={text} type="text"
+			   placeholder="What do you want help with?" />
+		</form>
+		<div class="mt-2 text-sm text-justify">The assistant makes mistakes and cannot read the documentation yet: always check important information!</div>
+		<!-- TODO: Add the button "I need a Human!" that performs initial triage and writes a detailed email -->
 	    {/if}
-	{/each}
-	
-	<form action="#" on:submit|preventDefault={handleUserMessage} class="my-2">
-	    <input disabled={status && $status.slug == "running"} class="w-full px-2 py-1 text-lg rounded-lg bg-violet-100" bind:value={text} type="text"
-		   placeholder="What do you want help with?" />
-	</form>
-	<div class="mt-2 text-sm">The assistant makes mistakes, always check important information</div>
-	<div class="text-sm">Also, the assistant cannot read the documentation yet</div>
-	<!-- TODO: Add the button "I need a Human!" that performs initial triage and writes a detailed email -->
-    {/if}
+	</div>
     </content>
 </div>
 
