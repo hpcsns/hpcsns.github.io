@@ -2,11 +2,14 @@
 
 <script>
  import { onMount } from "svelte"
+ import Showdown from "showdown"
  import { Ollama } from "./lib/ollama.js"
  import { Chat } from "./lib/chats.js"
  import config from "./lib/config.js"
  import timeAgo from "./lib/timeAgo.js"
 
+ const mdConverter = new Showdown.Converter()
+ 
  let ollama // ollama object to interact with the server
  let status // status variable bind to the svelte store of ollama
  let model // model that has been chosen as the best currently available
@@ -71,8 +74,8 @@
 				<span class="font-bold">{#if message.role == "user"}You{:else}Assistant{/if}</span>
 				<span class="text-grey-500 text-sm">{$timeAgo(message.timestamp)}</span>
 			    </div>
-			    <div>
-				{message.content}
+			    <div class="prose-stone">
+				{@html mdConverter.makeHtml(message.content)}
 			    </div>
 			</div>
 		    {/if}
