@@ -36,6 +36,13 @@
      text = ""
      await chat.complete(model)
  }
+
+ let msgTextSize = "text-base" 
+ function cycleTextSize() {
+     msgTextSize = (msgTextSize == "text-base") ? "text-sm" :
+		   (msgTextSize == "text-sm") ? "text-lg" :
+		   (msgTextSize == "text-lg") ? "text-base" : "text-base"
+ }
 </script>
 
 <button class="absolute bottom-2 right-2 py-2 px-4 bg-violet-700 hover:bg-violet-600 font-bold text-lg text-white rounded-lg" class:hidden={chatBotOpen} on:click={() => chatBotOpen = true}>
@@ -54,6 +61,7 @@
 		<span title={status ? $status.description : ""}>{status ? $status.icon : ""}</span>
 	    </div>
 	    <div>
+		<button title="Change the messages text size" on:click={cycleTextSize}>🗛</button>
 		{#if !chatBotExpanded}
 		    <button title="Expand full width" on:click={() => chatBotExpanded = true}>↖️</button>
 		{:else}
@@ -66,7 +74,7 @@
 	    {#if model && chat}
 		{#each chat._.messages as message}
 		    {#if message.role != "system" }
-			<div class="rounded-md py-2 px-4 text-justify text-base block w-3/4 my-2"
+			<div class="rounded-md py-2 px-4 text-justify block w-3/4 my-2 {msgTextSize}"
 			     class:bg-sky-200={message.role == "user"} class:place-self-end={message.role == "user"}
 			     class:bg-lime-200={message.role == "assistant"} class:place-self-start={message.role == "assistant"}>
 			    
