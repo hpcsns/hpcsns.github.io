@@ -12,8 +12,10 @@
     "@sveltejs/vite-plugin-svelte": "^3.0.2",
     "@tailwindcss/typography": "^0.5.10",
     "autoprefixer": "^10.4.17",
+    "highlightjs-copy": "^1.0.5",
     "javascript-time-ago": "^2.5.9",
     "postcss": "^8.4.35",
+    "sass": "^1.70.0",
     "showdown": "^2.1.0",
     "svelte": "^4.2.10",
     "tailwindcss": "^3.4.1",
@@ -21,6 +23,7 @@
   },
   "dependencies": {
     "@paralleldrive/cuid2": "^2.2.2",
+    "highlight.js": "^11.9.0",
     "localforage": "^1.10.0"
   }
 }
