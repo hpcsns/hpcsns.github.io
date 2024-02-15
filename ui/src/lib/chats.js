@@ -12,7 +12,7 @@ export class Chat {
 	    this._ = {
 		chatId: createId(),
 		created: ts,
-		lastUpdated: ts,
+		updated: ts,
 		title: null,
 		tags: [],
 		starred: false,
@@ -24,7 +24,7 @@ export class Chat {
 
     async save({ untouched }) {
 	if (untouched)
-	    this._.lastUpdated = new Date().toISOString()
+	    this._.updated = new Date().toISOString()
 	await localForage.setItem(`chat/${this._.chatId}`, JSON.stringify(this._))
     }
 
@@ -67,6 +67,20 @@ export class Chat {
 	    if (piece.done)
 		await this.addMessage(message)
 	}
+    }
+
+    toMarkdown() {
+	const metadata = {
+	    id: this._.chatId,
+	    title: this._.title,
+	    created: this._.created,
+	    updated: this._.updated,
+	}
+	const frontmatter = "---\n" + Object.entries(metadata).map(
+	    ([key, value]) => `${key}: ${value}\n`).join("") + "---\n"
+	const messages = this._.messages.filter(msg => msg.role != "system")
+	      .map(msg => `role: ${msg.role}\ntimestamp: ${msg.timestamp}\n\n${msg.content}\n`).join(`\n---\n`)
+	return frontmatter + messages
     }
 }
 

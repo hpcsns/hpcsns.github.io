@@ -3,6 +3,7 @@
 <script>
  import { onMount, tick } from "svelte"
  import { get_current_component } from "svelte/internal"
+ import { SvelteToast, toast } from "@zerodevx/svelte-toast"
  import Showdown from "showdown"
  import Highlight from "highlight.js"
  import CopyButtonPlugin from "highlightjs-copy"
@@ -69,6 +70,16 @@
      }
  })
 
+ async function copyChat() {
+     try {
+	 const mdchat = chat.toMarkdown()
+	 await navigator.clipboard.writeText(mdchat)
+	 toast.push("Chat copied to clipboard!")
+     } catch (error) {
+	 toast.push(`Error in copying text to clipboard: ${error}`)
+     }
+ }
+
  let chatBotOpen = false
  let chatBotExpanded = false
 
@@ -94,7 +105,8 @@
 	    <div class="flex flex-row flex-no-wrap justify-start flex-auto py-1">
 		<div title={status ? $status.description : ""}>✨ HPC Assistant {status ? $status.icon : ""}</div>
 	    </div>
-	    <div class="flex flex-row flex-no-wrap justify-end flex-auto py-1">
+	    <div class="flex flex-row flex-no-wrap justify-end flex-auto py-1 gap-1">
+		<button title="Copy the conversation as Markdown" on:click={copyChat}>📋</button>
 		<button title="Change the messages text size" on:click={cycleTextSize}>🗛</button>
 		{#if !chatBotExpanded}
 		    <button title="Expand full width" on:click={() => chatBotExpanded = true}>↖️</button>
@@ -135,6 +147,8 @@
 	</div>
     </content>
 </div>
+
+<SvelteToast />
 
 <style>
  @tailwind base;

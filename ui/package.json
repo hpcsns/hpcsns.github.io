@@ -11,6 +11,7 @@
   "devDependencies": {
     "@sveltejs/vite-plugin-svelte": "^3.0.2",
     "@tailwindcss/typography": "^0.5.10",
+    "@zerodevx/svelte-toast": "^0.9.5",
     "autoprefixer": "^10.4.17",
     "highlightjs-copy": "^1.0.5",
     "javascript-time-ago": "^2.5.9",
