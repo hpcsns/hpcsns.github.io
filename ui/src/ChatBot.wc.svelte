@@ -103,10 +103,8 @@
 	    {#if model && chat}
 		{#each chat._.messages as message}
 		    {#if message.role != "system" }
-			<div class="rounded-md py-2 px-4 text-justify block w-3/4 my-2 {msgTextSize}"
-			     class:bg-sky-200={message.role == "user"} class:place-self-end={message.role == "user"}
-			     class:bg-lime-200={message.role == "assistant"} class:place-self-start={message.role == "assistant"}>
-			    
+			<div class="rounded-md py-2 px-4 text-justify block w-full my-2 {msgTextSize}"
+			     class:bg-sky-200={message.role == "user"} class:bg-lime-200={message.role == "assistant"}>			    
 			    <div class="mb-2 flex flex-row flex-wrap justify-between items-baseline">
 				<span class="font-bold">{#if message.role == "user"}You{:else}Assistant{/if}</span>
 				<span class="text-grey-500 text-sm">{$timeAgo(message.timestamp)}</span>
