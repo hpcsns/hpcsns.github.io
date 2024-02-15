@@ -28,20 +28,31 @@ export class Chat {
 	await localForage.setItem(`chat/${this._.chatId}`, JSON.stringify(this._))
     }
 
+    async regenerateStreaming(model, fromMessageId) {
+	for (let index = 0; index < this._.messages.length; index++)
+	    if (this._.messages[index].id == fromMessageId)
+		this._.messages = this._.messages.slice(0, index)
+	await this.updated()
+	await this.completeStreaming(model)
+	await this.updated()
+    }
+
     async addPartialMessage(message) {
 	const timestamp = new Date().toISOString()
+	let id = createId()
 	if (this._.messages[this._.messages.length - 1]?.partial)
-	    this._.messages.pop()
-	this._.messages.push({ timestamp, ...message, partial: true })
+	    id = this._.messages.pop().id
+	this._.messages.push({ timestamp, ...message, partial: true, id: id })
 	await this.updated()
     }
     
     async addMessage(message) {
 	const timestamp = new Date().toISOString()
+	let id = createId()
 	if (this._.messages[this._.messages.length - 1]?.partial)
-	    this._.messages.pop()
-	this._.messages.push({ timestamp , ...message })
-	await this.updated()	
+	    id = this._.messages.pop().id
+	this._.messages.push({ timestamp , ...message, id: id })
+	await this.updated()
     }
 
     async complete(model) {	
