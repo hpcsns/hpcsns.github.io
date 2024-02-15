@@ -86,6 +86,16 @@
      await highlightCode()
  }
 
+ async function copyMessage(messageId) {
+     try {
+	 const mdmessage = chat.messageToMarkdown(messageId)
+	 await navigator.clipboard.writeText(mdmessage)
+	 toast.push("Message copied to clipboard!")
+     } catch (error) {
+	 toast.push(`Error in copying text to clipboard: ${error}`)
+     }
+ }
+
  let chatBotOpen = false
  let chatBotExpanded = false
 
@@ -130,7 +140,10 @@
 			     class:bg-sky-200={message.role == "user"} class:bg-lime-200={message.role == "assistant"}>
 			    <div class="mb-2 flex flex-row flex-wrap justify-between items-baseline">
 				<div class="flex flex-row flex-nowrap justify-start items-baseline gap-2">
-				    <span class="font-bold">{#if message.role == "user"}You{:else}Assistant{/if}</span>
+				    <span class="font-bold mr-4">{#if message.role == "user"}You{:else}Assistant{/if}</span>
+				    <button on:click={copyMessage(message.id)}>
+					<svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>Copy</title><path d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z" /></svg>
+				    </button>
 				    {#if message.role == "assistant"}
 					<button on:click={regenerateMessage(message.id)}>
 					    <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>Regenerate</title><path d="M12,6V9L16,5L12,1V4A8,8 0 0,0 4,12C4,13.57 4.46,15.03 5.24,16.26L6.7,14.8C6.25,13.97 6,13 6,12A6,6 0 0,1 12,6M18.76,7.74L17.3,9.2C17.74,10.04 18,11 18,12A6,6 0 0,1 12,18V15L8,19L12,23V20A8,8 0 0,0 20,12C20,10.43 19.54,8.97 18.76,7.74Z" /></svg>

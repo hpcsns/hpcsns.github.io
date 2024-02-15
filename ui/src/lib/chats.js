@@ -37,6 +37,12 @@ export class Chat {
 	await this.updated()
     }
 
+    messageToMarkdown(messageId) {
+	for (let index = 0; index < this._.messages.length; index++)
+	    if (this._.messages[index].id == messageId)
+		return this._.messages[index].content
+    }
+
     async addPartialMessage(message) {
 	const timestamp = new Date().toISOString()
 	let id = createId()
