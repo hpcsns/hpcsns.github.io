@@ -2,6 +2,7 @@
 
 <script>
  import { onMount, tick } from "svelte"
+ import { get } from "svelte/store"
  import { get_current_component } from "svelte/internal"
  import { SvelteToast, toast } from "@zerodevx/svelte-toast"
  import Spinner from "./Spinner.svelte"
@@ -49,9 +50,14 @@
  }
 
  async function handleUserMessage() {
-     // TODO: Check if CTRL key is pressed and ignore
+     if (get(status).slug == "running") {
+	 toast.push("Wait for the assistant to answer before sending a reply")
+	 return
+     }
      await chat.addMessage({ role: "user", content: text })
      text = ""
+     await tick()
+     await highlightCode()
      await chat.completeStreaming(model)
      await tick()
      // TODO: Highlight code blocks while the model is still writing
@@ -105,6 +111,13 @@
      msgTextSize = (msgTextSize == "text-base") ? "text-sm" :
 		   (msgTextSize == "text-sm") ? "text-lg" :
 		   (msgTextSize == "text-lg") ? "text-base" : "text-base"
+ }
+
+ function keyPressedInForm(e) {
+     if (e.keyCode == 10) // Ctrl + Enter
+	 setTimeout(handleUserMessage, 0)
+     else if (e.keyCode == 13 && !e.shiftKey) // Enter w/o Shift
+	 setTimeout(handleUserMessage, 0)
  }
 </script>
 
@@ -164,17 +177,15 @@
 
 	<div>
 	    {#if model && chat}
-		<form action="#" on:submit|preventDefault={handleUserMessage} class="my-2 relative">
-		    <input disabled={status && $status.slug == "running"} class="w-full px-2 py-1 text-lg rounded-lg bg-violet-100" bind:value={text} type="text"
-			   placeholder="What do you want help with?" />
+		<div class="my-2 relative">
+		    <div on:keypress={keyPressedInForm} contenteditable="true" disabled={status && $status.slug == "running"} class="w-full px-2 py-1 text-lg rounded-lg bg-violet-100 break-words text-justify" bind:innerText={text} type="text" placeholder="What do you want help with?" role="input" />
 		    {#if status && $status.slug == "running"}
 			<div class="absolute bottom-0 right-0">
 			    <Spinner title="Waiting for the assistant..." />
 			</div>
 		    {/if}
-		</form>
+		</div>
 		<div class="mt-2 text-sm text-justify">The assistant makes mistakes and cannot read the documentation yet: always check important information!</div>
-		<!-- TODO: Add the button "I need a Human!" that performs initial triage and writes a detailed email -->
 	    {/if}
 	</div>
     </content>
@@ -189,6 +200,11 @@
 
  .max-w-1-3 {
      max-width: 33.33%;
+ }
+
+ [contenteditable=true]:empty:before {
+     content: attr(placeholder);
+     color: grey;
  }
 </style>
 
