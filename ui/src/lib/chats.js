@@ -64,7 +64,7 @@ export class Chat {
     async complete(model) {	
 	const result = this.ollama.chatStreaming({
 	    model: model,
-	    messages: this._.messages,
+	    messages: this._.messages.filter(msg => msg.role != "notice"),
 	    stream: false,
 	})
 	await this.addMessage(result.message)
@@ -73,7 +73,7 @@ export class Chat {
     async completeStreaming(model) {	
 	const stream = this.ollama.chatStreaming({
 	    model: model,
-	    messages: this._.messages,
+	    messages: this._.messages.filter(msg => msg.role != "notice"),
 	    stream: true,
 	})
 	let message = { role: "assistant", content: "" }

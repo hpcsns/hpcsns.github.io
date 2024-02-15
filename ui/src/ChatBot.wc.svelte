@@ -73,7 +73,7 @@
      if (model) {
 	 await ollama.preloadModel(model)
 	 chat = new Chat(onChatUpdate, ollama)
-	 await chat.addMessage(config.systemPrompt)
+	 await chat.addMessage(config.prompts.assistant)
      }
  })
 
@@ -101,6 +101,19 @@
      } catch (error) {
 	 toast.push(`Error in copying text to clipboard: ${error}`)
      }
+ }
+
+ let helpdeskMode = false
+ async function startSupportBot() {
+     // change the system prompt and add notice to the user in chat
+     helpdeskMode = true
+     chat._.messages[0] = config.prompts.helpdesk
+     await chat.addMessage({ role: "notice", content: "The assistant will now ask you some questions on your current problem to help you write an email to the HPC Staff." })
+     await tick()
+     await chat.completeStreaming(model)
+     await tick()
+     // TODO: Highlight code blocks while the model is still writing
+     await highlightCode()
  }
 
  let chatBotOpen = false
@@ -151,10 +164,18 @@
 		{#each chat._.messages as message (message.id)}
 		    {#if message.role != "system" }
 			<div class="rounded-md py-2 px-4 text-justify block w-full my-2 {msgTextSize}"
-			     class:bg-sky-200={message.role == "user"} class:bg-lime-200={message.role == "assistant"}>
+			     class:bg-sky-200={message.role == "user"} class:bg-lime-200={message.role == "assistant"} class:bg-orange-200={message.role == "notice"}>
 			    <div class="mb-2 flex flex-row flex-wrap justify-between items-baseline">
 				<div class="flex flex-row flex-nowrap justify-start items-baseline gap-2">
-				    <span class="font-bold mr-4">{#if message.role == "user"}You{:else}Assistant{/if}</span>
+				    <span class="font-bold mr-4">
+					{#if message.role == "user"}
+					    You
+					{:else if message.role == "notice"}
+					    Important
+					{:else}
+					    Assistant
+					{/if}
+				    </span>
 				    <button on:click={copyMessage(message.id)}>
 					<svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>Copy</title><path d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z" /></svg>
 				    </button>
@@ -178,17 +199,20 @@
 	<div>
 	    {#if model && chat}
 		<div class="my-2 relative">
-		    <div on:keypress={keyPressedInForm} contenteditable="true" disabled={status && $status.slug == "running"} class="w-full px-2 py-1 text-lg rounded-lg bg-violet-100 break-words text-justify" bind:innerText={text} type="text" placeholder="What do you want help with?" role="input" />
+		    <div on:keypress={keyPressedInForm} contenteditable="true" disabled={status && $status.slug == "running"} class="w-full px-2 py-1 text-lg rounded-lg bg-violet-100 break-words text-justify border-2 border-solid border-black" bind:innerText={text} type="text" placeholder="What do you want help with?" role="input" />
 		    {#if status && $status.slug == "running"}
-			<div class="absolute bottom-0 right-0">
+			<div class="absolute bottom-0 right-2">
 			    <Spinner title="Waiting for the assistant..." />
 			</div>
 		    {/if}
 		</div>
 		<div class="mt-2 text-sm text-justify">The assistant makes mistakes and cannot read the documentation yet: always check important information!</div>
+		<button class:hidden={helpdeskMode} class="mt-2 py-1 w-full bg-violet-600 hover:bg-violet-700 font-bold text-lg text-white rounded-lg" on:click={startSupportBot}>
+		    <span class="px-1">👩‍💻 I Need Human Help for This!</span>
+		</button>
 	    {/if}
 	</div>
-    </content>
+</content>
 </div>
 
 <SvelteToast />
