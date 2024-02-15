@@ -54051,7 +54051,6 @@ You will find below a partial conversation with the user. Follow the instruction
   },
   // AI models to use in order of preference
   modelList: [
-    { model: "notux:8x7b-v1-q3_K_L", premium: !0 },
     { model: "nous-hermes2-mixtral:8x7b-dpo-q3_K_L", premium: !0 },
     { model: "solar:10.7b-instruct-v1-q3_K_L", premium: !0 },
     { model: "mistral:7b-instruct-v0.2-q3_K_L", premium: !1 },
