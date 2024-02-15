@@ -108,7 +108,7 @@
      // change the system prompt and add notice to the user in chat
      helpdeskMode = true
      chat._.messages[0] = config.prompts.helpdesk
-     await chat.addMessage({ role: "notice", content: "The assistant will now ask you some questions on your current problem to help you write an email to the HPC Staff." })
+     await chat.addMessage(config.prompts.helpnotice)
      await tick()
      await chat.completeStreaming(model)
      await tick()
@@ -201,7 +201,7 @@
 		    <div class="my-2 relative">
 			<div on:keypress={keyPressedInForm} contenteditable="true" disabled={status && $status.slug == "running"} class="w-full px-2 py-1 text-lg rounded-lg bg-violet-100 break-words text-justify border-2 border-solid border-black" bind:innerText={text} type="text" placeholder="What do you want help with?" role="input" />
 			{#if status && $status.slug == "running"}
-			    <div class="absolute bottom-0 right-2">
+			    <div class="absolute bottom-0 top-0 right-2 py-1">
 				<Spinner title="Waiting for the assistant..." />
 			    </div>
 			{/if}
