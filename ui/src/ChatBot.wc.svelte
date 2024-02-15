@@ -4,6 +4,7 @@
  import { onMount, tick } from "svelte"
  import { get_current_component } from "svelte/internal"
  import { SvelteToast, toast } from "@zerodevx/svelte-toast"
+ import Spinner from "./Spinner.svelte"
  import Showdown from "showdown"
  import Highlight from "highlight.js"
  import CopyButtonPlugin from "highlightjs-copy"
@@ -163,9 +164,14 @@
 
 	<div>
 	    {#if model && chat}
-		<form action="#" on:submit|preventDefault={handleUserMessage} class="my-2">
+		<form action="#" on:submit|preventDefault={handleUserMessage} class="my-2 relative">
 		    <input disabled={status && $status.slug == "running"} class="w-full px-2 py-1 text-lg rounded-lg bg-violet-100" bind:value={text} type="text"
 			   placeholder="What do you want help with?" />
+		    {#if status && $status.slug == "running"}
+			<div class="absolute bottom-0 right-0">
+			    <Spinner title="Waiting for the assistant..." />
+			</div>
+		    {/if}
 		</form>
 		<div class="mt-2 text-sm text-justify">The assistant makes mistakes and cannot read the documentation yet: always check important information!</div>
 		<!-- TODO: Add the button "I need a Human!" that performs initial triage and writes a detailed email -->
