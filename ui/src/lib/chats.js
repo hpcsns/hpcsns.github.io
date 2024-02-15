@@ -28,20 +28,45 @@ export class Chat {
 	await localForage.setItem(`chat/${this._.chatId}`, JSON.stringify(this._))
     }
 
-    addMessage(message) {
+    async addPartialMessage(message) {
 	const timestamp = new Date().toISOString()
+	if (this._.messages[this._.messages.length - 1]?.partial)
+	    this._.messages.pop()
+	this._.messages.push({ timestamp, ...message, partial: true })
+	await this.updated()
+    }
+    
+    async addMessage(message) {
+	const timestamp = new Date().toISOString()
+	if (this._.messages[this._.messages.length - 1]?.partial)
+	    this._.messages.pop()
 	this._.messages.push({ timestamp , ...message })
-	this.updated()	
+	await this.updated()	
     }
 
     async complete(model) {	
-	// TODO: Make the endpoint streaming
-	const result = await this.ollama.chat({
+	const result = this.ollama.chatStreaming({
 	    model: model,
 	    messages: this._.messages,
 	    stream: false,
 	})
-	this.addMessage(result.message)
+	await this.addMessage(result.message)
+    }
+
+    async completeStreaming(model) {	
+	const stream = this.ollama.chatStreaming({
+	    model: model,
+	    messages: this._.messages,
+	    stream: true,
+	})
+	let message = { role: "assistant", content: "" }
+	for await (const piece of stream) {
+	    // build the full message meanwhile
+	    message.content += piece.message.content
+	    await this.addPartialMessage(message)
+	    if (piece.done)
+		await this.addMessage(message)
+	}
     }
 }
 

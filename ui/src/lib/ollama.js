@@ -75,4 +75,31 @@ export class Ollama {
 	}
 	this.status.set(Status.Error)
     }
+
+    async* chatStreaming(body, options) {
+	options = options || {}
+	const iStatus = get(this.status)
+	try {
+	    this.status.set(Status.Running)
+	    const response = await fetch(`${this.baseURL}/api/chat`, {
+		method: "POST",
+		body: JSON.stringify(body),
+		...options,
+	    })
+	    if (response.status === 200) {
+		const reader = response.body.getReader()
+		while (true) {
+		    const decoder = new TextDecoder("utf8")
+		    const { done, value } = await reader.read()
+		    if (done) break
+		    yield JSON.parse(decoder.decode(value))
+		}
+		this.status.set(iStatus)
+		return
+	    }
+	} catch (error) {
+	    console.error(error)
+	}
+	this.status.set(Status.Error)
+    }
 }

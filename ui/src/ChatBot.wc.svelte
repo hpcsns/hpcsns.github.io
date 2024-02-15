@@ -33,6 +33,29 @@
  })
  Highlight.addPlugin(new CopyButtonPlugin())
 
+ let text
+ async function highlightCode() {
+     const chatbotWCs = document.querySelectorAll("hpc-chatbot")
+     for (let chatbotwc of chatbotWCs)
+	 for (let codeblock of chatbotwc.shadowRoot.querySelectorAll("pre code:not([data-highlighted])"))
+	     Highlight.highlightElement(codeblock)
+ }
+
+ // called when the chat has an update
+ async function onChatUpdate() {
+     chat = chat
+ }
+
+ async function handleUserMessage() {
+     // TODO: Check if CTRL key is pressed and ignore
+     await chat.addMessage({ role: "user", content: text })
+     text = ""
+     await chat.completeStreaming(model)
+     await tick()
+     // TODO: Highlight code blocks while the model is still writing
+     await highlightCode()
+ }
+
  onMount(async () => {
      // load ollama model and understand its status
      const baseUrl = `${window.location.protocol}//${window.location.hostname}:${window.location.port}`
@@ -41,31 +64,13 @@
      model = await ollama.getBestModel(config.modelList)
      if (model) {
 	 await ollama.preloadModel(model)
-	 chat = new Chat(() => chat = chat, ollama)
-	 chat.addMessage(config.systemPrompt)
+	 chat = new Chat(onChatUpdate, ollama)
+	 await chat.addMessage(config.systemPrompt)
      }
  })
 
- let text
  let chatBotOpen = false
  let chatBotExpanded = false
-
- async function highlightCode() {
-     const chatbotWCs = document.querySelectorAll("hpc-chatbot")
-     for (let chatbotwc of chatbotWCs)
-	 for (let codeblock of chatbotwc.shadowRoot.querySelectorAll("pre code:not([data-highlighted])"))
-	     Highlight.highlightElement(codeblock)
- }
- 
- async function handleUserMessage() {
-     // TODO: Check if CTRL key is pressed and ignore
-     chat.addMessage({ role: "user", content: text })
-     text = ""
-     await highlightCode()
-     await chat.complete(model)
-     await tick()
-     await highlightCode()
- }
 
  let msgTextSize = "text-base" 
  function cycleTextSize() {
