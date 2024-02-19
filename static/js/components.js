@@ -56603,8 +56603,7 @@ function Rh(t) {
     t[2] && yu(t)
   ), ne = (
     /*model*/
-    t[1] && /*chat*/
-    t[2] && wu(t)
+    t[1] && wu(t)
   );
   return k = new zm({}), {
     c() {
@@ -56688,9 +56687,8 @@ function Rh(t) {
       ) : "")) && J(I, "title", i), _e === (_e = le(X)) && de ? de.p(X, te) : (de.d(1), de = _e(X), de && (de.c(), de.m(l, O))), /*model*/
       X[1] && /*chat*/
       X[2] ? ee ? ee.p(X, te) : (ee = yu(X), ee.c(), ee.m(Y, null)) : ee && (ee.d(1), ee = null), /*model*/
-      X[1] && /*chat*/
-      X[2] ? ne ? (ne.p(X, te), te & /*model, chat*/
-      6 && Ue(ne, 1)) : (ne = wu(X), ne.c(), Ue(ne, 1), ne.m(N, null)) : ne && (nn(), Ve(ne, 1, 1, () => {
+      X[1] ? ne ? (ne.p(X, te), te & /*model*/
+      2 && Ue(ne, 1)) : (ne = wu(X), ne.c(), Ue(ne, 1), ne.m(N, null)) : ne && (nn(), Ve(ne, 1, 1, () => {
         ne = null;
       }), rn()), (!q || te & /*chatBotExpanded*/
       64) && Me(
