@@ -197,7 +197,7 @@
 		{/if}
 	    </div>
 	    <div>
-		{#if model && chat}
+		{#if model}
 		    <div class="my-2 relative">
 			<div on:keypress={keyPressedInForm} contenteditable="true" disabled={status && $status.slug == "running"} class="w-full px-2 py-1 text-lg rounded-lg bg-violet-100 break-words text-justify border-2 border-solid border-black" bind:innerText={text} type="text" placeholder="What do you want help with?" role="input" />
 			{#if status && $status.slug == "running"}
