@@ -49,11 +49,13 @@
      chat = chat
  }
 
- async function handleUserMessage() {
+ async function handleUserMessage(message) {
      if (get(status).slug == "running") {
 	 toast.push("Wait for the assistant to answer before sending a reply")
 	 return
      }
+     if (message)
+	 text = message
      await chat.addMessage({ role: "user", content: text })
      text = ""
      await tick()
@@ -172,7 +174,7 @@
 					    {#if message.role == "user"}
 						You
 					    {:else if message.role == "notice"}
-						Email Draft
+						Notice
 					    {:else}
 						Assistant
 					    {/if}
@@ -197,6 +199,16 @@
 		{/if}
 	    </div>
 	    <div>
+		{#if chat && chat._.messages.length <= 1}
+		    <div class:md:grid-cols-2={chatBotExpanded} class="grid grid-cols-1 gap-x-2">
+			{#each [...config.initialPromptList] as prompt}
+			    <button on:click={() => handleUserMessage(prompt)}
+				class="my-1 py-1 px-2 w-full bg-emerald-700 hover:bg-emerald-600 text-white font-bold text-justify text-base rounded-lg">
+				{prompt}
+			    </button>
+			{/each}
+		    </div>
+		{/if}
 		{#if model}
 		    <div class="my-2 relative">
 			<div on:keypress={keyPressedInForm} contenteditable="true" disabled={status && $status.slug == "running"} class="w-full px-2 py-1 text-lg rounded-lg bg-violet-100 break-words text-justify border-2 border-solid border-black" bind:innerText={text} type="text" placeholder="What do you want help with?" role="input" />
