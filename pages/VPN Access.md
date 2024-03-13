@@ -1,0 +1,12 @@
+- The HPC Center Account Credentials are also valid to connect from outside the school network to the offered resources via the configuration of a Virtual Private Network (VPN) on the user computer
+- Windows and Mac users need to [download the GlobalProtect Agent](https://vpngw.sns.it/global-protect/getsoftwarepage.esp), Linux user can use NetworkManager installed by default and configure a Cisco Compatible VPN (vpnc)
+- The VPN parameters to set are the following:
+	- Portal: `vpngw.sns.it`
+	- Username: `nsurname@chpc.sns.it`
+		- where `n` is the first letter of your name and `surname` has to be substituted with your surname
+		- this also corresponds to your HPC account username followed by `@chpc.sns.it`
+	- Password: Your HPC Account Password
+	- Group Name: VPNSNS
+	- Group Password: VPNSNS
+- In case something is still unclear you can follow the visual instructions for [Windows](file://./assets/Install_VPN_on_Windows.u.zip_1710331567296_0.html), [MacOS](file://./assets/Install_VPN_on_Mac.u.zip_1710331621794_0.html) or [Linux](file://./assets/Install_VPN_on_Linux.u.zip_1710331664489_0.html)
+- Remember that when you change your HPC password you also have to change it in your VPN settings

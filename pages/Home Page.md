@@ -13,7 +13,7 @@
 		- [[AI Assistants List]]: Useful coding-related AI Websites
 	- **Learning Material**
 		- **Cheatsheets**
-			- ![linux_cheat_sheet.pdf](file://./assets/linux_cheat_sheet_1705662849893_0.pdf): basic linux commands
+			- [Linux Cheat Sheet](file://./assets/linux_cheat_sheet_1705662849893_0.pdf): basic linux commands
 			- [DevHints](https://devhints.io/): a vast collection of cheatsheet
 		- **Guides and Tutorials**
 			- [[Sending Jobs on Trantor with PBS]]
