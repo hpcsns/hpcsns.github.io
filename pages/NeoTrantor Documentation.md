@@ -1,0 +1,12 @@
+- **NeoTrantor** is the name of the new cluster of the HPC Center. Works for the renovation of the software stack began in 2023 with the transitioning from the old cluster (Trantor) to continue for the first half of 2024.
+- The main changes from a user perspective are:
+	- Enforcing hard limits on RAM usage of jobs as requested by the job sender, to prevent a single job from killing the others due to out of memory errors. This means you now have to better understand the memory profile of your jobs.
+	- Updated software stack with more recent versions of various libraries and toolkits.
+	- Uniform availability of singularity / apptainer and conda / mamba for custom reproducible environments.
+	- [Experimental] The introduction of an AI assistant for Linux and programming related questions (bottom right corner). The assistant runs a freely available AI model on machines of the HPC Center and is thus totally private.
+	- [Upcoming] A parallel networked scratch area (distinct from the local one) of high capacity.
+- From an infrastructural perspective the upgrades concern:
+	- Internal node-to-node network speed upgraded from 1Gb/s to 10Gb/s.
+	- Restructuring of the network topology for faster problem troubleshooting.
+	- [Upcoming] Full off-site backup of the user's homes, currently totaling 2PB.
+	- [Upcoming] Green provisioning scheduler to spare energy when nodes are not in use.

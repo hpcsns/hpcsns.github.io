@@ -10,6 +10,7 @@
 		- [[VPN Access]]: Access the cluster from outside the SNS network
 		- [[Cluster Resources]]: What resources are available in the cluster
 		- [[Trantor Cheatsheet]]: Condensed useful Trantor-specific information
+		- [[NeoTrantor Documentation]]: Condensed facts about the new cluster
 		- [[AI Assistants List]]: Useful coding-related AI Websites
 	- **Learning Material**
 		- **Cheatsheets**

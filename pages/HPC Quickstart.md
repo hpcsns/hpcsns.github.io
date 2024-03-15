@@ -1,0 +1,22 @@
+- This is a brief guide aiming to get you up and running on the SNS HPC Cluster in short time.
+- To access the cluster you need an HPC account, whose credentials are distinct from your main SNS account. To get one you need to be approved by one of the school's professors or other structured personnel, typically your supervisor or thesis advisor. In the [[Home Page]], under the "Forms and Modules" section, you will find a link to the online form (accessible with your SNS account or with SPID authentication) and the paper-based form in case you don't have any of those authentication methods.
+  We will now assume that you have obtained your HPC credentials.
+- If you are currently outside of the School's Network, you will need to first connect to the inside using the [[VPN Access]]. If you have SNS credentials you can use those and get access to the whole internal network, otherwise you can use the HPC credentials to access only the computational cluster and the hosted virtual machines.
+  Please follow the instructions in the link to connect to the inside.
+- Almost everything on the HPC cluster is done on the command line and the access is via SSH only so you will need an SSH client. In Linux and MacOS systems you can open a terminal emulator and just use the `ssh` program. In Windows you can use the [built-in SSH client](https://learn.microsoft.com/en-us/windows/terminal/tutorials/ssh). If you want a more user-friendly experience you can install a graphical SSH client such as [PuTTY](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html) or [Termius](https://termius.com/). If you are working on your laptop while travelling you may find the [Mosh Shell](https://mosh.org/) more useful as it supports intermittent connectivity and connection roaming.
+- Now we will use the ssh client to connect to the Head Nodes of the cluster: we will need a username and a password to authenticate, and a hostname to connect to.
+	- **Username**: The username is composed of the first letter of the name followed by the full surname. For example, Mario Rossi will become `mrossi`.
+	- **Hostname**: For Trantor cluster you can choose one of the three head nodes (`trantor01.sns.it`, `trantor02.sns.it`, `trantor03.sns.it`), while for NeoTrantor you can connect to `neotrantor.chpc.sns.it`.
+	- **Command**: On your terminal emulator write `ssh username@hostname` to connect. If you are using a graphical software to connect you will need to fill in the above username and hostname; if asked for a port write `22`. You will then be asked to insert your password (you can't see it but it's being inserted, so pay attention to the letters you type on the keyboard). If this is your first time connecting to the cluster you will be asked to change your password immediately. Please follow the on-screen instructions carefully as you may lock yourself out of your account by mistyping the new password.
+- You are now inside of the cluster Head Nodes, from which you can edit files in your Home (15 TB quota) and launch jobs on the cluster.
+	- Please notice that it is forbidden to run CPU-intensive jobs on the Head Nodes, as they serve only the purpose of an entry to the cluster and to launch jobs using PBS.
+	- The machines performing the computation (which you can find a list of in [[Cluster Resources]]) are accessible via SSH from the Head Nodes (using `ssh machinename`) only forde bugging purposes of the running code. To run computations you always have to use the PBS system, as its scheduler will make sure to start the jobs on free computing nodes.
+- Let's begin with some basic terminal commands you can try on the cluster:
+	- `whoami` displays the username you are currently logged in with
+	- `ls` shows the files and directories inside of the current directory
+	- `cd directory` allows you to navigate to a folder inside of the current one
+	- `cd ..` allows you to navigate to the folder above of the current one
+	- `mkdir directory` creates a new directory in the current path
+	- `pwd` shows the current path
+- File editing and programming [TODO]
+- Usage of PBS with basic commands [TODO]
